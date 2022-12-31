@@ -27,11 +27,20 @@ sap.ui.define([
 
 				// enable routing
 				this.getRouter().initialize();
-
-				// set the device model
-				this.setModel(models.createDeviceModel(), "device");
 			},
 
+			createContent: function () {
+				const oViewData = {
+					component: this,
+				};
+
+				return sap.ui.view({
+					viewName: "smartsourceapp.view.App",
+					type: sap.ui.core.mvc.ViewType.XML,
+					viewData: oViewData,
+				});
+			},
+			
 		});
 	}
 );

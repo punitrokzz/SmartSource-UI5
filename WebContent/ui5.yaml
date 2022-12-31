@@ -28,4 +28,4 @@ server:
       afterMiddleware: fiori-tools-appreload
       configuration:
         component: smartsourceapp
-        ui5Theme: sap_horizon
+        ui5Theme: sap_fiori_3

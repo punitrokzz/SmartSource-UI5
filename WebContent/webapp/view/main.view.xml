@@ -2,6 +2,20 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
-        <content />
+        <content>
+            <IconTabBar
+                id="idIconTabBarNoIcons"
+                expanded="{device>/isNoPhone}"
+                class="sapUiResponsiveContentPadding">
+                <items>
+                    <IconTabFilter text="Supplier News" key="news">
+                        <Text text="Supplier news goes here ..." />
+                    </IconTabFilter>
+                    <IconTabFilter text="Sourcing Projects" key="projects">
+                        <Text text="Project list goes here ..." />
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </content>
     </Page>
 </mvc:View>

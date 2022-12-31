@@ -94,20 +94,20 @@
 			},
 			"routes": [
 				{
-					"name": "Routemain",
-					"pattern": ":?query:",
-					"target": [
-						"Targetmain"
-					]
+					"name": "home",
+					"pattern": "",
+					"target": "main"
 				}
 			],
 			"targets": {
-				"Targetmain": {
+				"main": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
 					"viewId": "main",
-					"viewName": "main"
+					"viewName": "main",
+					"controlId": "app",
+					"viewLevel": 1
 				}
 			}
 		},

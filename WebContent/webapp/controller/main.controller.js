@@ -1,14 +1,13 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
-],
-	/**
-	 * @param {typeof sap.ui.core.mvc.Controller} Controller
-	 */
-	function (Controller) {
-		"use strict";
+	"smartsourceapp/controller/BaseController"
+], function (Controller) {
+	"use strict";
 
-		return Controller.extend("smartsourceapp.controller.main", {
-			onInit: function () {
-			}
-		});
+	return Controller.extend("smartsourceapp.controller.main", {
+
+		onInit: function () {
+		},
+
 	});
+
+});
