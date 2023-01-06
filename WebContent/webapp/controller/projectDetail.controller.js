@@ -6,35 +6,33 @@ sap.ui.define([
 	return Controller.extend("smartsourceapp.controller.main", {
 
 		onInit: function () {
+			console.log("id:", this.getView().getId())
 			var that = this;
 			var oSettingsModel = new sap.ui.model.json.JSONModel();
 			oSettingsModel.loadData("model/applicationProperties.json");
 			oSettingsModel.attachRequestCompleted(function () {
 				that.getView().setModel(this, "Settings");
 				var serviceURL = that.getServiceURL();
+				console.log(serviceURL);
 				var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
+				console.log(oModel);
 				that.getView().setModel(oModel);
-				// oModel.read('/SupplierInfoDataSet', {
-				// 	success: (oData) => {
-				// 		let news = [];
-				// 		const suppliers = oData.results;
-				// 		suppliers.forEach(({ Snews }) => {
-				// 			let snews = JSON.parse(Snews);
-				// 		});
-				// 		var oJson = new sap.ui.model.json.JSONModel(oData.results);
-				// 		that.getView().setModel(oJson, 'news');
-				// 	},
-				// 	error: (oError) => {
-				// 		console.log(oError);
-				// 	},
-				// });
 			});
+
+			this.getOwnerComponent()
+				.getRouter()
+				.getRoute("projectDetail")
+				.attachPatternMatched(this._onRouteMatched, this);
 		},
 
-		onNavigate: function (projectId) {
-			this.getRouter().navTo("projectDetail", { projectId });
+		_onRouteMatched: function (oEvent) {
+			var projectId = oEvent.getParameter("arguments").projectId;
+			this.projectId = projectId;
 		},
 
+		onNavigate: function (supplierId) {
+			this.getRouter().navTo("supplier", { projectId: this.projectId, supplierId });
+		},
 	});
 
 });

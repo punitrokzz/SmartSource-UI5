@@ -1,18 +1,77 @@
-<mvc:View controllerName="smartsourceapp.controller.main"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
+<mvc:View controllerName="smartsourceapp.controller.main" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+	xmlns:tnt="sap.tnt">
     <Page id="page" title="{i18n>title}">
+        <customHeader>
+            <Toolbar>
+                <ToolbarSpacer />
+                <Title text="{i18n>title}" level="H1" titleStyle="H3" />
+                <ToolbarSpacer />
+            </Toolbar>
+        </customHeader>
         <content>
-            <IconTabBar
-                id="idIconTabBarNoIcons"
-                expanded="{device>/isNoPhone}"
-                class="sapUiResponsiveContentPadding">
+            <IconTabBar id="idIconTabBarNoIcons" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
                 <items>
-                    <IconTabFilter text="Supplier News" key="news">
-                        <Text text="Supplier news goes here ..." />
+                    <IconTabFilter text="Suppliers News" key="news">
+                        <List headerText="">
+                            <CustomListItem>
+                                <VBox class="sapUiSmallMargin" >
+                                    <FlexBox alignItems="Start" justifyContent="SpaceBetween">
+                                        <Label text="pressroom.toyota.com" design="Bold" />
+                                        <Label text="05/01/2023" />
+                                    </FlexBox>
+                                    <Title level="H6" titleStyle="H5">
+                                        <Link text="A Nod to the Near Future: Toyota bZ Compact SUV Concept Revealed in U.S." target="_blank" href="https://pressroom.toyota.com/a-nod-to-the-near-future-toyota-bz-compact-suv-concept-revealed-in-u-s/" emphasized="true" wrapping="true" />
+                                    </Title>
+                                    <Text
+                                        text="Lorem ipsum dolor st amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat"
+                                        width="auto"
+                                        maxLines="6"
+                                        wrapping="true"
+                                        textAlign="Begin"
+                                        textDirection="Inherit"
+                                        visible="true"
+                                    />
+                                    <HBox class="sapUiTinyMarginTop">
+                                        <Label text="Related Supplier:" class="sapUiTinyMarginEnd"/>
+                                        <tnt:InfoLabel text="Toyota" colorScheme="6" />
+                                    </HBox>
+                                </VBox>
+                            </CustomListItem>
+                        </List>
                     </IconTabFilter>
                     <IconTabFilter text="Sourcing Projects" key="projects">
-                        <Text text="Project list goes here ..." />
+                        <Table width="100%" growing="true" growingScrollToLoad="true" growingThreshold="25" mode="None" itemPress="_onFioriListReportTableItemPress" updateFinished="_onFioriListReportTableUpdateFinished">
+                            <headerToolbar>
+                                <OverflowToolbar design="Transparent">
+                                    <content>
+                                        <Title textAlign="Begin" text="Sourcing Projects" />
+                                        <Title text="(1)" />
+                                    </content>
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column width="auto" minScreenWidth="Phone">
+                                    <header>
+                                        <Text text="Sourcing Project" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column width="auto" minScreenWidth="Tablet" demandPopin="true">
+                                    <header>
+                                        <Text text="Name" width="auto" />
+                                    </header>
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem type="Navigation" press="onNavigate('1000000108')">
+                                    <cells>
+                                        <ObjectIdentifier title="1000000108" text="" />
+                                        <Text text="Sample Sourcing Project" width="auto" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
                     </IconTabFilter>
                 </items>
             </IconTabBar>

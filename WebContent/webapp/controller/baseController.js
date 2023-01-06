@@ -23,6 +23,10 @@ sap.ui.define([
 			}
 		},
 
+		getServiceURL: function () {
+			return this.getView().getModel("Settings").getProperty("/oDataUrl");
+		},
+
 	});
 
 });
