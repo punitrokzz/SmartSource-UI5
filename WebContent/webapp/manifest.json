@@ -73,6 +73,10 @@
 				"dataSource": "mainService",
 				"preload": true,
 				"settings": {}
+			},
+			"Settings": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "model/applicationProperties.json"
 			}
 		},
 		"resources": {
@@ -97,17 +101,33 @@
 					"name": "home",
 					"pattern": "",
 					"target": "main"
+				},
+				{
+					"name": "projectDetail",
+					"pattern": "project/{projectId}",
+					"target": "projectDetail"
+				},
+				{
+					"name": "supplier",
+					"pattern": "project/{projectId}/supplier/{supplierId}",
+					"target": "supplier"
 				}
 			],
 			"targets": {
 				"main": {
-					"viewType": "XML",
-					"transition": "slide",
-					"clearControlAggregation": false,
 					"viewId": "main",
 					"viewName": "main",
-					"controlId": "app",
 					"viewLevel": 1
+				},
+				"projectDetail": {
+					"viewId": "projectDetail",
+					"viewName": "projectDetail",
+					"viewLevel": 2
+				},
+				"supplier": {
+					"viewId": "supplier",
+					"viewName": "supplier",
+					"viewLevel": 3
 				}
 			}
 		},
