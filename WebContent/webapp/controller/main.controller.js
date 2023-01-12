@@ -14,20 +14,26 @@ sap.ui.define([
 				var serviceURL = that.getServiceURL();
 				var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
 				that.getView().setModel(oModel);
-				// oModel.read('/SupplierInfoDataSet', {
-				// 	success: (oData) => {
-				// 		let news = [];
-				// 		const suppliers = oData.results;
-				// 		suppliers.forEach(({ Snews }) => {
-				// 			let snews = JSON.parse(Snews);
-				// 		});
-				// 		var oJson = new sap.ui.model.json.JSONModel(oData.results);
-				// 		that.getView().setModel(oJson, 'news');
-				// 	},
-				// 	error: (oError) => {
-				// 		console.log(oError);
-				// 	},
-				// });
+				oModel.read('/SupplierInfoDataSet', {
+					success: (oData) => {
+						console.log(oData);
+						let news = [];
+						const suppliers = oData.results;
+						suppliers.forEach(({ Name1, Snews }) => {
+							let snews = JSON.parse(Snews);
+							console.log(snews)
+							snews.supplier = Name1
+							snews.highlight = snews.highlight.replace(/<\/?b>/g, "");
+							news.push(snews)
+
+						});
+						var oJson = new sap.ui.model.json.JSONModel(news);
+						that.getView().setModel(oJson, 'news');
+					},
+					error: (oError) => {
+						console.log(oError);
+					},
+				});
 			});
 		},
 

@@ -13,19 +13,24 @@
         <content>
             <IconTabBar id="idIconTabBarNoIcons" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
                 <items>
-                    <IconTabFilter text="Suppliers News" key="news">
-                        <List headerText="">
+                    <IconTabFilter text="SUPPLIERS NEWS" key="news">
+                        <List items="{news>/}">
                             <CustomListItem>
+                            <HBox alignItems="Center">
+                                <!-- <Image src="https://toyota-cms-media.s3.amazonaws.com/wp-content/uploads/2022/11/Toyota-bZ-Compact-SUV-Concept_002-1-1500x844.jpg" width="15em" /> -->
+
                                 <VBox class="sapUiSmallMargin" >
                                     <FlexBox alignItems="Start" justifyContent="SpaceBetween">
-                                        <Label text="pressroom.toyota.com" design="Bold" />
-                                        <Label text="05/01/2023" />
+                                        <Label text="{ path: 'news>newsurl', formatter:'.utilities.getHostname' }" design="Bold" />
+                                        <!-- <Label text="05/01/2023" /> -->
                                     </FlexBox>
                                     <Title level="H6" titleStyle="H5">
-                                        <Link text="A Nod to the Near Future: Toyota bZ Compact SUV Concept Revealed in U.S." target="_blank" href="https://pressroom.toyota.com/a-nod-to-the-near-future-toyota-bz-compact-suv-concept-revealed-in-u-s/" emphasized="true" wrapping="true" />
+                                        <Link text="{ path: 'news>newsurl', formatter:'.utilities.getTitle' }" 
+                                        target="_blank"
+                                         href="{news>newsurl}" emphasized="true" wrapping="true" />
                                     </Title>
                                     <Text
-                                        text="Lorem ipsum dolor st amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat"
+                                        text="{news>highlight}"
                                         width="auto"
                                         maxLines="6"
                                         wrapping="true"
@@ -35,13 +40,14 @@
                                     />
                                     <HBox class="sapUiTinyMarginTop">
                                         <Label text="Related Supplier:" class="sapUiTinyMarginEnd"/>
-                                        <tnt:InfoLabel text="Toyota" colorScheme="6" />
+                                        <tnt:InfoLabel text="{news>supplier}" colorScheme="6" />
                                     </HBox>
                                 </VBox>
+                                </HBox>
                             </CustomListItem>
                         </List>
                     </IconTabFilter>
-                    <IconTabFilter text="Sourcing Projects" key="projects">
+                    <IconTabFilter text="SOURCING PROJECTS" key="projects">
                         <Table width="100%" growing="true" growingScrollToLoad="true" growingThreshold="25" mode="None" itemPress="_onFioriListReportTableItemPress" updateFinished="_onFioriListReportTableUpdateFinished">
                             <headerToolbar>
                                 <OverflowToolbar design="Transparent">

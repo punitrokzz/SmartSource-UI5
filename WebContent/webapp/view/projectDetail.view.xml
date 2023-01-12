@@ -17,6 +17,11 @@
                         <contentRight/>
                     </Bar>
                 </uxap:navigationBar>
+                <uxap:breadcrumbs>
+                    <Breadcrumbs currentLocationText="Sample Sourcing Project">
+                        <Link text="Home" press="onNavHome"/>
+                    </Breadcrumbs>
+                </uxap:breadcrumbs>
             </uxap:ObjectPageHeader>
         </uxap:headerTitle>
         <uxap:headerContent>
@@ -79,7 +84,7 @@
                                     <ColumnListItem type="Navigation" press="onNavigate(${Snr})">
                                         <cells>
                                             <ObjectIdentifier title="{Snr}" text="" />
-                                            <Text text="{Name1}" width="auto" />
+                                            <Text text="{ path: 'Name1', formatter:'.formatter.textFormatter' }" width="auto" />
                                         </cells>
                                     </ColumnListItem>
                                 </items>

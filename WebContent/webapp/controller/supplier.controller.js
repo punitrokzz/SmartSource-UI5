@@ -1,6 +1,7 @@
 sap.ui.define([
 	"smartsourceapp/controller/BaseController",
-	"./simulationDialog"
+	"./simulationDialog",
+
 ], function (Controller, Dialog) {
 	"use strict";
 
@@ -40,6 +41,19 @@ sap.ui.define([
 							}
 							var oJson = new sap.ui.model.json.JSONModel(oData);
 							that.getView().setModel(oJson, 'supplierInfo');
+
+							let news = [];
+							// suppliers.forEach(({ Name1, Snews }) => {
+							let snews = JSON.parse(oData['Snews']);
+							// console.log(snews)
+							snews.supplier = oData.Name1
+							snews.highlight = snews.highlight.replace(/<\/?b>/g, "");
+							news.push(snews)
+								
+							// });
+							var oJson = new sap.ui.model.json.JSONModel(news);
+							that.getView().setModel(oJson, 'news');
+							
 						},
 						error: (oError) => {
 							console.log(oError);
@@ -59,7 +73,7 @@ sap.ui.define([
 			}
 		},
 
-		onOverflowToolbarPress : function () {
+		onOverflowToolbarPress: function () {
 			var oPanel = this.byId("expandablePanel");
 			oPanel.setExpanded(!oPanel.getExpanded());
 		},
@@ -82,6 +96,7 @@ sap.ui.define([
 			oDialog._oControl.setBindingContext(context);
 			oDialog.open();
 		},
+
 	});
 
 });

@@ -1,29 +1,47 @@
-<mvc:View controllerName="smartsourceapp.controller.supplier" xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:microchart="sap.suite.ui.microchart" xmlns:chart="sap.chart" xmlns:data="sap.chart.data">
+<mvc:View controllerName="smartsourceapp.controller.supplier" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:uxap="sap.uxap" 
+    xmlns="sap.m" 
+    xmlns:layout="sap.ui.layout" 
+    xmlns:microchart="sap.suite.ui.microchart" 
+    xmlns:chart="sap.chart" 
+    xmlns:data="sap.chart.data">
     <uxap:ObjectPageLayout showTitleInHeaderContent="false" showHeaderContent="true" showEditHeaderButton="false" showFooter="false" useIconTabBar="true" class="sapUiSizeCompact">
         <uxap:headerTitle>
-            <uxap:ObjectPageHeader objectTitle="{supplier>/Name1}" objectSubtitle="{supplier>/Snr}" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="true" isObjectSubtitleAlwaysVisible="true" showPlaceholder="false">
+            <uxap:ObjectPageHeader 
+                objectTitle="{ path: 'supplier>/Name1', formatter:'.formatter.textFormatter' }" 
+                objectSubtitle="{supplier>/Snr}" 
+                isObjectIconAlwaysVisible="false" 
+                isObjectTitleAlwaysVisible="true" 
+                isObjectSubtitleAlwaysVisible="true" 
+                showPlaceholder="false">
                 <uxap:navigationBar>
                     <Bar>
                         <contentLeft>
                             <Button type="Back" press="onNavBack" />
                         </contentLeft>
                         <contentMiddle>
-                            <Title text="Sample Sourcing Project" />
+                            <Title text="Smart Source" />
                         </contentMiddle>
                         <contentRight />
                     </Bar>
                 </uxap:navigationBar>
-                <uxap:breadCrumbsLinks />
+                <uxap:breadcrumbs>
+                    <Breadcrumbs currentLocationText="{ path: 'supplier>/Name1', formatter:'.formatter.textFormatter' }">
+                        <Link text="Home" press="onNavHome"/>
+                        <Link text="Sample Sourcing Project" press="onNavBack"/>
+                    </Breadcrumbs>
+                </uxap:breadcrumbs>
             </uxap:ObjectPageHeader>
         </uxap:headerTitle>
-        <uxap:headerContent>
+        <uxap:headerContent> 
             <VBox>
-                <Title text="Info" />
-                <ObjectAttribute title="Country" text="{supplier>/Land1}" />
-                <ObjectAttribute title="Ort" text="{supplier>/Ort1}" />
+                <Title text="Supplier Info" />
+                <ObjectAttribute title="Country" text="{ path: 'supplier>/Land1', formatter:'.formatter.textFormatter' }" />
+                <ObjectAttribute title="Ort" text="{ path: 'supplier>/Ort1', formatter:'.formatter.textFormatter' }" />
             </VBox>
             <VBox>
-                <Title text="Supplier Data" />
+                <Title text="Corporate Performance" />
                 <HBox>
                     <Label text="Sales Revenue:" class="sapUiTinyMarginEnd" />
                     <ObjectNumber number="{supplierInfo>/Sarev}" unit="M USD" />
@@ -33,13 +51,16 @@
                     <ObjectNumber number="{supplierInfo>/Fyprft}" unit="M USD" />
                 </HBox>
                 <HBox alignItems="Center">
-                    <Label text="Quality:" class="sapUiTinyMarginEnd" vAlign="Middle" />
-                    <RatingIndicator value="{supplierInfo>/Qindex}" maxValue="10" iconSize="12px" visualMode="Half" editable="false" />
+                    <Label text="Quality Index:" class="sapUiTinyMarginEnd" vAlign="Middle" />
+                    <RatingIndicator value="{= ${supplierInfo>/Qindex}/2}" maxValue="5" iconSize="12px" visualMode="Half" editable="false" />
                 </HBox>
             </VBox>
             <VBox alignItems="Stretch" direction="Column" fitContainer="false" width="287.63543701171875px" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
                 <items>
-                    <Title text="Profit Trend | M USD" titleStyle="Auto" width="auto" textAlign="Begin" visible="true" wrapping="false" />
+                    <HBox>
+                        <Title text="Profit Trends |" class="sapUiTinyMarginEnd" />
+                        <ObjectNumber number="" unit="M USD" state="None" />
+                    </HBox>
                     <HBox width="100%" height="150px" visible="true" class="sapUiSizeCompact">
                         <items>
                             <microchart:InteractiveLineChart displayedPoints="135">
@@ -62,7 +83,7 @@
                 <uxap:subSections>
                     <uxap:ObjectPageSubSection title="Supplier News">
                         <uxap:blocks>
-                            <List headerText="">
+                            <!-- <List headerText="">
                                 <CustomListItem>
                                     <VBox class="sapUiSmallMargin" >
                                         <FlexBox alignItems="Start" justifyContent="SpaceBetween">
@@ -84,7 +105,39 @@
                                     </VBox>
                                 </CustomListItem>
                                 
-                            </List>
+                            </List> -->
+                            <List items="{news>/}">
+                            <CustomListItem>
+                            <HBox alignItems="Center">
+                                <!-- <Image src="https://toyota-cms-media.s3.amazonaws.com/wp-content/uploads/2022/11/Toyota-bZ-Compact-SUV-Concept_002-1-1500x844.jpg" width="15em" /> -->
+
+                                <VBox class="sapUiSmallMargin" >
+                                    <FlexBox alignItems="Start" justifyContent="SpaceBetween">
+                                        <Label text="{ path: 'news>newsurl', formatter:'.utilities.getHostname' }" design="Bold" />
+                                        <!-- <Label text="05/01/2023" /> -->
+                                    </FlexBox>
+                                    <Title level="H6" titleStyle="H5">
+                                        <Link text="{ path: 'news>newsurl', formatter:'.utilities.getTitle' }" 
+                                        target="_blank"
+                                         href="{news>newsurl}" emphasized="true" wrapping="true" />
+                                    </Title>
+                                    <Text
+                                        text="{news>highlight}"
+                                        width="auto"
+                                        maxLines="6"
+                                        wrapping="true"
+                                        textAlign="Begin"
+                                        textDirection="Inherit"
+                                        visible="true"
+                                    />
+                                    <!-- <HBox class="sapUiTinyMarginTop">
+                                        <Label text="Related Supplier:" class="sapUiTinyMarginEnd"/>
+                                        <tnt:InfoLabel text="{news>supplier}" colorScheme="6" />
+                                    </HBox> -->
+                                </VBox>
+                                </HBox>
+                            </CustomListItem>
+                        </List>
                         </uxap:blocks>
                     </uxap:ObjectPageSubSection>
                 </uxap:subSections>
@@ -301,7 +354,6 @@
                                             </IconTabBar>
                                         </content>
                                     </Panel>
-                                    
                                 </items>
                                 <layoutData />
                             </VBox>
