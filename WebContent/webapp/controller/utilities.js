@@ -19,7 +19,7 @@ sap.ui.define([
 		getTitle: function (url) {
 			try {
 				const { pathname } = new URL(url);
-				var words = pathname.toLowerCase().split(/-|\//g);
+				var words = pathname.split('.')[0].toLowerCase().split(/-|\//g);
 				for (var i in words) {
 					if (words[i].length)
 						words[i] = words[i][0].toUpperCase() + words[i].slice(1);

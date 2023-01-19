@@ -17,8 +17,18 @@ sap.ui.define([
 			return sap.ui.core.UIComponent.getRouterFor(this);
 		},
 
-		onNavHome: function () {
+		onNavHome: function (oEvent) {
+			console.log("history length", history.length)
+			var oHistory, sPreviousHash;
+
+			oHistory = History.getInstance();
+			sPreviousHash = oHistory.getPreviousHash();
+			console.log("previousHash-------", sPreviousHash)
 			this.getRouter().navTo("home", {}, true /*no history*/);
+			console.log("previousHash???", sPreviousHash === undefined)
+			if (sPreviousHash === undefined) {
+				window.location.reload(true)
+			}
 		},
 
 		onNavBack: function (oEvent) {
@@ -26,11 +36,12 @@ sap.ui.define([
 
 			oHistory = History.getInstance();
 			sPreviousHash = oHistory.getPreviousHash();
-
+			console.log("previousHash-------", sPreviousHash)
 			if (sPreviousHash !== undefined) {
 				window.history.go(-1);
 			} else {
-				this.onNavHome();
+				this.getRouter().navTo("home", {}, true /*no history*/);
+				window.location.reload(true);
 			}
 		},
 

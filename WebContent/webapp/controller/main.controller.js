@@ -16,12 +16,12 @@ sap.ui.define([
 				that.getView().setModel(oModel);
 				oModel.read('/SupplierInfoDataSet', {
 					success: (oData) => {
-						console.log(oData);
+						// console.log(oData);
 						let news = [];
 						const suppliers = oData.results;
 						suppliers.forEach(({ Name1, Snews }) => {
 							let snews = JSON.parse(Snews);
-							console.log(snews)
+							// console.log(snews)
 							snews.supplier = Name1
 							snews.highlight = snews.highlight.replace(/<\/?b>/g, "");
 							news.push(snews)

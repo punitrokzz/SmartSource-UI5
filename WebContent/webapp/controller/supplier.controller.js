@@ -40,6 +40,8 @@ sap.ui.define([
 								2017: parseFloat(pTrend[4]),
 							}
 							var oJson = new sap.ui.model.json.JSONModel(oData);
+							// var oJson = new sap.ui.model.json.JSONModel({});
+
 							that.getView().setModel(oJson, 'supplierInfo');
 
 							let news = [];
@@ -52,11 +54,17 @@ sap.ui.define([
 								
 							// });
 							var oJson = new sap.ui.model.json.JSONModel(news);
+							// var oJson = new sap.ui.model.json.JSONModel({});
+
 							that.getView().setModel(oJson, 'news');
 							
 						},
 						error: (oError) => {
 							console.log(oError);
+							var oJson = new sap.ui.model.json.JSONModel({});
+							that.getView().setModel(oJson, 'supplierInfo');
+							// var oJson = new sap.ui.model.json.JSONModel({});
+							that.getView().setModel(oJson, 'news');
 						},
 					});
 
