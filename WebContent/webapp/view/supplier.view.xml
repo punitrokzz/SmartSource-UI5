@@ -1,20 +1,7 @@
-<mvc:View controllerName="smartsourceapp.controller.supplier" 
-    xmlns:mvc="sap.ui.core.mvc" 
-    xmlns:uxap="sap.uxap" 
-    xmlns="sap.m" 
-    xmlns:layout="sap.ui.layout" 
-    xmlns:microchart="sap.suite.ui.microchart" 
-    xmlns:chart="sap.chart" 
-    xmlns:data="sap.chart.data">
+<mvc:View controllerName="smartsourceapp.controller.supplier" xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:microchart="sap.suite.ui.microchart" xmlns:chart="sap.chart" xmlns:data="sap.chart.data">
     <uxap:ObjectPageLayout showTitleInHeaderContent="false" showHeaderContent="true" showEditHeaderButton="false" showFooter="false" useIconTabBar="true" class="sapUiSizeCompact">
         <uxap:headerTitle>
-            <uxap:ObjectPageHeader 
-                objectTitle="{ path: 'supplier>/Name1', formatter:'.formatter.textFormatter' }" 
-                objectSubtitle="{supplier>/Snr}" 
-                isObjectIconAlwaysVisible="false" 
-                isObjectTitleAlwaysVisible="true" 
-                isObjectSubtitleAlwaysVisible="true" 
-                showPlaceholder="false">
+            <uxap:ObjectPageHeader objectTitle="{ path: 'supplier>/Name1', formatter:'.formatter.textFormatter' }" objectSubtitle="{supplier>/Snr}" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="true" isObjectSubtitleAlwaysVisible="true" showPlaceholder="false">
                 <uxap:navigationBar>
                     <Bar>
                         <contentLeft>
@@ -28,17 +15,23 @@
                 </uxap:navigationBar>
                 <uxap:breadcrumbs>
                     <Breadcrumbs currentLocationText="{ path: 'supplier>/Name1', formatter:'.formatter.textFormatter' }">
-                        <Link text="Home" press="onNavHome"/>
-                        <Link text="Sample Sourcing Project" press="onNavBack"/>
+                        <Link text="Home" press="onNavHome" />
+                        <Link text="{ path: 'projectInfo>/Name', formatter:'.formatter.textFormatter' }" press="onNavBack" />
                     </Breadcrumbs>
                 </uxap:breadcrumbs>
             </uxap:ObjectPageHeader>
         </uxap:headerTitle>
-        <uxap:headerContent> 
+        <uxap:headerContent>
             <VBox>
                 <Title text="Supplier Info" />
-                <ObjectAttribute title="Country" text="{ path: 'supplier>/Land1', formatter:'.formatter.textFormatter' }" />
-                <ObjectAttribute title="Ort" text="{ path: 'supplier>/Ort1', formatter:'.formatter.textFormatter' }" />
+                <HBox>
+                    <Label text="Country:" class="sapUiTinyMarginEnd" />
+                    <Text text="{ path: 'supplier>/Land1', formatter:'.formatter.textFormatter' }" />
+                </HBox>
+                <HBox>
+                    <Label text="Ort:" class="sapUiTinyMarginEnd" />
+                    <Text text="{ path: 'supplier>/Ort1', formatter:'.formatter.textFormatter' }" />
+                </HBox>
             </VBox>
             <VBox>
                 <Title text="Corporate Performance" />
@@ -107,37 +100,27 @@
                                 
                             </List> -->
                             <List items="{news>/}">
-                            <CustomListItem>
-                            <HBox alignItems="Center">
-                                <!-- <Image src="https://toyota-cms-media.s3.amazonaws.com/wp-content/uploads/2022/11/Toyota-bZ-Compact-SUV-Concept_002-1-1500x844.jpg" width="15em" /> -->
+                                <CustomListItem>
+                                    <HBox alignItems="Center">
+                                        <!-- <Image src="https://toyota-cms-media.s3.amazonaws.com/wp-content/uploads/2022/11/Toyota-bZ-Compact-SUV-Concept_002-1-1500x844.jpg" width="15em" /> -->
 
-                                <VBox class="sapUiSmallMargin" >
-                                    <FlexBox alignItems="Start" justifyContent="SpaceBetween">
-                                        <Label text="{ path: 'news>newsurl', formatter:'.utilities.getHostname' }" design="Bold" />
-                                        <!-- <Label text="05/01/2023" /> -->
-                                    </FlexBox>
-                                    <Title level="H6" titleStyle="H5">
-                                        <Link text="{ path: 'news>newsurl', formatter:'.utilities.getTitle' }" 
-                                        target="_blank"
-                                         href="{news>newsurl}" emphasized="true" wrapping="true" />
-                                    </Title>
-                                    <Text
-                                        text="{news>highlight}"
-                                        width="auto"
-                                        maxLines="6"
-                                        wrapping="true"
-                                        textAlign="Begin"
-                                        textDirection="Inherit"
-                                        visible="true"
-                                    />
-                                    <!-- <HBox class="sapUiTinyMarginTop">
+                                        <VBox class="sapUiSmallMargin">
+                                            <FlexBox alignItems="Start" justifyContent="SpaceBetween">
+                                                <Label text="{ path: 'news>newsurl', formatter:'.utilities.getHostname' }" design="Bold" />
+                                                <!-- <Label text="05/01/2023" /> -->
+                                            </FlexBox>
+                                            <Title level="H6" titleStyle="H5">
+                                                <Link text="{ path: 'news>newsurl', formatter:'.utilities.getTitle' }" target="_blank" href="{news>newsurl}" emphasized="true" wrapping="true" />
+                                            </Title>
+                                            <Text text="{news>highlight}" width="auto" maxLines="6" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                            <!-- <HBox class="sapUiTinyMarginTop">
                                         <Label text="Related Supplier:" class="sapUiTinyMarginEnd"/>
                                         <tnt:InfoLabel text="{news>supplier}" colorScheme="6" />
                                     </HBox> -->
-                                </VBox>
-                                </HBox>
-                            </CustomListItem>
-                        </List>
+                                        </VBox>
+                                    </HBox>
+                                </CustomListItem>
+                            </List>
                         </uxap:blocks>
                     </uxap:ObjectPageSubSection>
                 </uxap:subSections>
@@ -146,21 +129,16 @@
                 <uxap:subSections>
                     <uxap:ObjectPageSubSection title="Sourcing Items">
                         <uxap:blocks>
-                            <VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
+                            <VBox id="simulationList" items="{ path : '/SimulationSet', parameters : { $orderby : 'Id'  }}" alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
                                 <items>
-                                    <Panel height="auto" 
-                                        id="expandablePanel"
-                                        width="100%" 
-                                        expandable="true" 
-                                        expandAnimation="true" 
-                                        backgroundDesign="Solid">
+                                    <Panel height="auto" width="100%" expandable="true" expandAnimation="true" backgroundDesign="Solid">
                                         <headerToolbar>
                                             <OverflowToolbar active="true" press="onOverflowToolbarPress">
-                                                <Title text="Item 1" />
+                                                <Title text="Item {Id}" />
                                                 <ToolbarSpacer />
                                                 <HBox alignItems="Center">
-                                                    <Label text="Simulated Target Price:" class="sapUiTinyMarginEnd" vAlign="Middle"/>
-                                                    <ObjectNumber number="-" unit="USD" />
+                                                    <Label text="Simulated Target Price:" class="sapUiTinyMarginEnd" vAlign="Middle" />
+                                                    <ObjectNumber number="{= ${Price} !== 0 ? ${Price} : '-'}" unit="USD" />
                                                 </HBox>
                                                 <Button icon="sap-icon://settings" press="_onButtonPress" />
                                             </OverflowToolbar>

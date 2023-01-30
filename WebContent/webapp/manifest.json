@@ -111,6 +111,11 @@
 					"name": "supplier",
 					"pattern": "project/{projectId}/supplier/{supplierId}",
 					"target": "supplier"
+				},
+				{
+					"name": "item",
+					"pattern": "project/{projectId}/item/{itemId}",
+					"target": "item"
 				}
 			],
 			"targets": {
@@ -127,6 +132,11 @@
 				"supplier": {
 					"viewId": "supplier",
 					"viewName": "supplier",
+					"viewLevel": 3
+				},
+				"item": {
+					"viewId": "item",
+					"viewName": "item",
 					"viewLevel": 3
 				}
 			}

@@ -1,7 +1,7 @@
-<core:FragmentDefinition xmlns:core="sap.ui.core" controllerName="smartsource.controller.simulationDialog" xmlns="sap.m">
-    <Dialog horizontalScrolling="true" showHeader="true" state="None" stretch="false" title="Target Price Simulation" type="Standard" verticalScrolling="true" titleAlignment="Center" class="sapUiContentPadding">
-        <content>
-            <Title text="Priority level" titleStyle="H3" width="auto" textAlign="Center" visible="true" wrapping="false" class="sapUiSmallMargin" />
+<core:FragmentDefinition xmlns:core="sap.ui.core" controllerName="smartsource.controller.simulationDialog" xmlns="sap.m" xmlns:l="sap.ui.layout">
+    <Dialog horizontalScrolling="true" showHeader="true" state="None" stretch="false" title="Target Price Simulation" type="Standard" verticalScrolling="true" titleAlignment="Center">
+        <l:VerticalLayout id="dialogContent" busy="false" class="sapUiContentPadding">
+            <Title text="Item {Id}" titleStyle="H3" width="auto" textAlign="Center" visible="true" wrapping="false" />
             <HBox alignItems="Stretch" direction="Row" fitContainer="false" width="500px" height="auto" justifyContent="SpaceAround" renderType="Div" visible="true" displayInline="false">
                 <items>
                     <VBox alignItems="End" direction="Column" fitContainer="false" width="25%" height="auto" justifyContent="SpaceAround" renderType="Div" visible="true" displayInline="false">
@@ -18,11 +18,11 @@
                     <VBox alignItems="Stretch" direction="Column" fitContainer="false" width="70%" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
                         <items id="simulationDialog-radioButtonGroup">
                             <RadioButtonGroup id="sap_m_Dialog_0-content-sap_m_HBox-1671332664197-items-sap_m_VBox-2-items-sap_m_RadioButtonGroup-5" columns="4" selectedIndex="0" valueState="Success" width="100%" editable="true" enabled="true" textDirection="LTR" select="_onRadioButtonGroupSelect">
-                                 <buttons>
-                                    <RadioButton text="Critical"  selected="false"   class="sapUiTinyMarginEnd"/>
-                                    <RadioButton text="High"   class="sapUiTinyMarginEnd"/>
-                                    <RadioButton text="Medium" class="sapUiTinyMarginEnd"/>
-                                    <RadioButton text="Low"  />
+                                <buttons>
+                                    <RadioButton text="Critical" selected="false" class="sapUiTinyMarginEnd" />
+                                    <RadioButton text="High" class="sapUiTinyMarginEnd" />
+                                    <RadioButton text="Medium" class="sapUiTinyMarginEnd" />
+                                    <RadioButton text="Low" />
                                 </buttons>
                             </RadioButtonGroup>
                             <RadioButtonGroup
@@ -36,11 +36,11 @@
                                 textDirection="LTR"
                                 select="_onRadioButtonGroupSelect1"
                             >
-                               <buttons>
-                                    <RadioButton text="Critical"  selected="false"   class="sapUiTinyMarginEnd"/>
-                                    <RadioButton text="High"   class="sapUiTinyMarginEnd"/>
-                                    <RadioButton text="Medium" class="sapUiTinyMarginEnd"/>
-                                    <RadioButton text="Low"  />
+                                <buttons>
+                                    <RadioButton text="Critical" selected="false" class="sapUiTinyMarginEnd" />
+                                    <RadioButton text="High" class="sapUiTinyMarginEnd" />
+                                    <RadioButton text="Medium" class="sapUiTinyMarginEnd" />
+                                    <RadioButton text="Low" />
                                 </buttons>
                             </RadioButtonGroup>
                             <RadioButtonGroup
@@ -54,11 +54,11 @@
                                 textDirection="LTR"
                                 select="_onRadioButtonGroupSelect2"
                             >
-                                 <buttons>
-                                    <RadioButton text="Critical"  selected="false"   class="sapUiTinyMarginEnd"/>
-                                    <RadioButton text="High"   class="sapUiTinyMarginEnd"/>
-                                    <RadioButton text="Medium" class="sapUiTinyMarginEnd"/>
-                                    <RadioButton text="Low"  />
+                                <buttons>
+                                    <RadioButton text="Critical" selected="false" class="sapUiTinyMarginEnd" />
+                                    <RadioButton text="High" class="sapUiTinyMarginEnd" />
+                                    <RadioButton text="Medium" class="sapUiTinyMarginEnd" />
+                                    <RadioButton text="Low" />
                                 </buttons>
                             </RadioButtonGroup>
                             <RadioButtonGroup
@@ -72,11 +72,11 @@
                                 textDirection="LTR"
                                 select="_onRadioButtonGroupSelect3"
                             >
-                                 <buttons>
-                                    <RadioButton text="Critical"  selected="false"   class="sapUiTinyMarginEnd"/>
-                                    <RadioButton text="High"   class="sapUiTinyMarginEnd"/>
-                                    <RadioButton text="Medium" class="sapUiTinyMarginEnd"/>
-                                    <RadioButton text="Low"  />
+                                <buttons>
+                                    <RadioButton text="Critical" selected="false" class="sapUiTinyMarginEnd" />
+                                    <RadioButton text="High" class="sapUiTinyMarginEnd" />
+                                    <RadioButton text="Medium" class="sapUiTinyMarginEnd" />
+                                    <RadioButton text="Low" />
                                 </buttons>
                             </RadioButtonGroup>
                             <RadioButtonGroup
@@ -90,11 +90,11 @@
                                 textDirection="LTR"
                                 select="_onRadioButtonGroupSelect4"
                             >
-                                 <buttons>
-                                    <RadioButton text="Critical"  selected="false"   class="sapUiTinyMarginEnd"/>
-                                    <RadioButton text="High"   class="sapUiTinyMarginEnd"/>
-                                    <RadioButton text="Medium" class="sapUiTinyMarginEnd"/>
-                                    <RadioButton text="Low"  />
+                                <buttons>
+                                    <RadioButton text="Critical" selected="false" class="sapUiTinyMarginEnd" />
+                                    <RadioButton text="High" class="sapUiTinyMarginEnd" />
+                                    <RadioButton text="Medium" class="sapUiTinyMarginEnd" />
+                                    <RadioButton text="Low" />
                                 </buttons>
                             </RadioButtonGroup>
                             <RadioButtonGroup
@@ -109,10 +109,10 @@
                                 select="_onRadioButtonGroupSelect5"
                             >
                                 <buttons>
-                                    <RadioButton text="Critical"  selected="false"   class="sapUiTinyMarginEnd"/>
-                                    <RadioButton text="High"   class="sapUiTinyMarginEnd"/>
-                                    <RadioButton text="Medium" class="sapUiTinyMarginEnd"/>
-                                    <RadioButton text="Low"  />
+                                    <RadioButton text="Critical" selected="false" class="sapUiTinyMarginEnd" />
+                                    <RadioButton text="High" class="sapUiTinyMarginEnd" />
+                                    <RadioButton text="Medium" class="sapUiTinyMarginEnd" />
+                                    <RadioButton text="Low" />
                                 </buttons>
                             </RadioButtonGroup>
                         </items>
@@ -121,17 +121,16 @@
                 </items>
                 <layoutData />
             </HBox>
-            <HBox alignItems="Stretch" direction="Row" fitContainer="false" width="auto" height="auto" justifyContent="End" renderType="Div" visible="true" displayInline="false">
+            <HBox fitContainer="false" width="auto" height="auto" justifyContent="End" renderType="Div" visible="true" displayInline="false">
                 <items>
-                    <Button text="Perform Simulation" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" />
+                    <Button text="Perform Simulation" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onSimulate" />
                 </items>
-                <layoutData />
             </HBox>
-            <HBox alignItems="Center" justifyContent="End" renderType="Div" visible="true" displayInline="false" class="sapUiSmallMargin">
-                <Title text="Result:" titleStyle="H4" class="sapUiMediumMarginEnd"  vAlign="Middle" />
-                <ObjectNumber class="sapMObjectNumberLarge" number="-" unit="USD" state="None" />
+            <HBox alignItems="Center" alignContent="Center" justifyContent="SpaceBetween" visible="true" displayInline="false">
+                <Title text="Result:" titleStyle="H4" class="sapUiMediumMarginEnd" />
+                <ObjectNumber id="simulatedResult" class="sapMObjectNumberLarge" number="{= ${Price} !== 0 ? ${Price} : '-'}" unit="USD" state="None" />
             </HBox>
-        </content>
+        </l:VerticalLayout>
         <buttons>
             <Button text="Cancel" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onCancel" />
             <Button text="Save" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onSave" />

@@ -34,13 +34,65 @@ sap.ui.define([
 						console.log(oError);
 					},
 				});
+
+				// var testURL = that
+				// 	.getView()
+				// 	.getModel("Settings")
+				// 	.getProperty("/oTestUrl");
+				// console.log(testURL)
+
+				// var oTestModel = new sap.ui.model.odata.v2.ODataModel(testURL);
+				// that.getView().setModel(oTestModel);
+				// oTestModel.read('/ProjectSet', {
+				// 	success: (oData) => {
+				// 		console.log(oData)
+				// 	},
+				// 	error: (oError) => {
+				// 		console.log(oError);
+				// 	},
+				// });
+			var newURL = that
+					.getView()
+					.getModel("Settings")
+					.getProperty("/oNewUrl");
+				console.log(newURL)
+
+				var oNewModel = new sap.ui.model.odata.v2.ODataModel(newURL);
+				oNewModel.read('/QuotationSet', {
+					success: (oData) => {
+						console.log(oData)
+					},
+					error: (oError) => {
+						console.log(oError);
+					},
+				});
+				oNewModel.read('/MaterialSet', {
+					success: (oData) => {
+						console.log(oData)
+					},
+					error: (oError) => {
+						console.log(oError);
+					},
+				});
 			});
 		},
-
+	
 		onNavigate: function (projectId) {
 			this.getRouter().navTo("projectDetail", { projectId });
 		},
-
+		onTableUpdateFinished: function(oEvent) {
+			var oTable = oEvent.getSource();
+			var oHeaderbar = oTable.getAggregation("headerToolbar");
+			if (oHeaderbar && oHeaderbar.getAggregation("content")[1]) {
+				var oTitle = oHeaderbar.getAggregation("content")[1];
+				console.log(oTable.getBinding("items"))
+				if (oTable.getBinding("items") && oTable.getBinding("items").isLengthFinal()) {
+					oTitle.setText("(" + oTable.getBinding("items").getLength() + ")");
+				} else {
+					oTitle.setText("(1)");
+				}
+			}
+		},
 	});
 
 });

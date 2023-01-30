@@ -203,7 +203,6 @@ sap.ui.define([
 
 		},
 		onSave: function (oEvent) {
-
 			var sActionsheetName = "";
 			this.mActionsheets = this.mActionsheets || {};
 			var oActionsheet = this.mActionsheets[sActionsheetName];
@@ -230,11 +229,122 @@ sap.ui.define([
 		onInit: function () {
 			this._oDialog = this.getControl();
 			console.log("Dialog init")
+			console.log(this.getControl())
+			// var sPath = this.getControl().getBindingContext().sPath
+			var sPath = this.getControl().getBindingContext().getPath();
+			// console.log(this.getControl().b)
+			this.getControl().bindElement(sPath)
+			// console.log(sPath, sPathToBind)
+			var that = this
+			var serviceURL = that
+				.getView()
+				.getModel("Settings")
+				.getProperty("/oTestUrl");
+			console.log("serviceURL", serviceURL)
+			var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
+			oModel.read(sPath, {
+				success: (oData) => {
+					console.log(oData)
+					var oJson = new sap.ui.model.json.JSONModel(oData);
+					that.getView().setModel(oJson, 'simulation');
+					// simulatedResult.setNumber(oData.Price);
+					// dialogContent.setBusy(false);
+					// var oJson = new sap.ui.model.json.JSONModel(oData);
+					// that.getView().setModel(oJson, 'supplier');
+				},
+				error: (oError) => {
+					console.log(oError);
+					// dialogContent.setBusy(false);
+				},
+			});
+
 		},
-		
+
+
+
 		onExit: function () {
 			this._oDialog.destroy();
-		}
+		},
+
+		getOModel() {
+			// var serviceURL = this.getView()
+			// 	.getModel("Settings")
+			// 	.getProperty("/oDataUrl");
+			// return new sap.ui.model.odata.v2.ODataModel(serviceURL);
+			var serviceURL = this
+				.getView()
+				.getModel("Settings")
+				.getProperty("/oTestUrl");
+			console.log("serviceURL", serviceURL)
+			return new sap.ui.model.odata.v2.ODataModel(serviceURL);
+		},
+
+		getModel() {
+			return this.getView().getModel();
+		},
+
+		getContext(oEvent) {
+			return oEvent.getSource().getBindingContext();
+		},
+
+
+		onSimulate: function () {
+			var dialogContent = this.getView().byId('dialogContent');
+			dialogContent.setBusy(true);
+			var simulatedResult = this.getView().byId('simulatedResult');
+			var that = this
+			// that.getView().setModel(this, "Settings");
+			var sPath = this.getControl().getBindingContext().sPath
+			var serviceURL = that
+				.getView()
+				.getModel("Settings")
+				.getProperty("/oTestUrl");
+			var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
+			oModel.read(sPath, {
+				success: (oData) => {
+					console.log(oData)
+					simulatedResult.setNumber(oData.Price);
+					dialogContent.setBusy(false);
+				},
+				error: (oError) => {
+					console.log(oError);
+					dialogContent.setBusy(false);
+				},
+			});
+		},
+
+		onSave: function () {
+			console.log("save")
+			var that = this;
+			// this.close()
+			var sPath = this.getControl().getBindingContext().sPath
+			var sPathToBind = this.getControl().getBindingContext().getPath();
+			console.log(sPath, sPathToBind)
+			var simulatedResult = this.getView().byId('simulatedResult');
+			var Price = simulatedResult.getNumber()
+			console.log(that.getView().byId('simulationList'))
+			console.log(that.getView().byId('simulationList').getBinding("items"))
+
+			this.getOModel().update(
+				sPath,
+				{ Price: Number(Price) },
+				{
+					method: "PUT",
+					success: function (oData, oResponse) {
+						console.log("success", oData, oResponse);
+						that.getView().byId('simulationList').getBinding("items").refresh(true);
+						that.close();
+					},
+					error: function (oError) {
+						console.log("ERROE", oError);
+						sap.m.MessageToast.show("Error during save");
+					},
+				}
+			);
+
+		},
+
+
 
 	});
 }, /* bExport= */ true);

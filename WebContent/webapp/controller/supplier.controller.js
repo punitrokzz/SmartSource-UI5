@@ -15,8 +15,31 @@ sap.ui.define([
 		},
 
 		_onRouteMatched: function (oEvent) {
+			var projectId = oEvent.getParameter("arguments").projectId;
 			var supplierId = oEvent.getParameter("arguments").supplierId;
 			this.getData(supplierId);
+
+			var testURL = this
+				.getView()
+				.getModel("Settings")
+				.getProperty("/oTestUrl");
+			console.log("testURL", testURL)
+			var oTestModel = new sap.ui.model.odata.v2.ODataModel(testURL);
+			this.getView().setModel(oTestModel);
+
+			var that = this;
+		
+			oTestModel.read(`/ProjectSet('${projectId}')`, {
+				success: (oData) => {
+					console.log(oData)
+					var oJson = new sap.ui.model.json.JSONModel(oData);
+					// var oJson = new sap.ui.model.json.JSONModel({});
+					that.getView().setModel(oJson, 'projectInfo');
+				},
+				error: (oError) => {
+					console.log(oError);
+				},
+			});
 		},
 
 		getData(supplierId) {
@@ -51,13 +74,13 @@ sap.ui.define([
 							snews.supplier = oData.Name1
 							snews.highlight = snews.highlight.replace(/<\/?b>/g, "");
 							news.push(snews)
-								
+
 							// });
 							var oJson = new sap.ui.model.json.JSONModel(news);
 							// var oJson = new sap.ui.model.json.JSONModel({});
 
 							that.getView().setModel(oJson, 'news');
-							
+
 						},
 						error: (oError) => {
 							console.log(oError);
@@ -100,7 +123,7 @@ sap.ui.define([
 			var oDialog = new Dialog(this.getView());
 			// console.log("this.mDialogs", this.mDialogs, oDialog)
 			var context = oEvent.getSource().getBindingContext();
-			// console.log("context", context)
+			console.log("context", context)
 			oDialog._oControl.setBindingContext(context);
 			oDialog.open();
 		},

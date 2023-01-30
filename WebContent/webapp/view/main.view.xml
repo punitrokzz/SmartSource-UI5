@@ -48,7 +48,7 @@
                         </List>
                     </IconTabFilter>
                     <IconTabFilter text="SOURCING PROJECTS" key="projects">
-                        <Table width="100%" growing="true" growingScrollToLoad="true" growingThreshold="25" mode="None" itemPress="_onFioriListReportTableItemPress" updateFinished="_onFioriListReportTableUpdateFinished">
+                        <Table id="projectList" items="{/SourcingProjectSet}" width="100%" growing="true" growingScrollToLoad="true" growingThreshold="25" mode="None" itemPress="_onFioriListReportTableItemPress" updateFinished="onTableUpdateFinished">
                             <headerToolbar>
                                 <OverflowToolbar design="Transparent">
                                     <content>
@@ -70,10 +70,10 @@
                                 </Column>
                             </columns>
                             <items>
-                                <ColumnListItem type="Navigation" press="onNavigate('1000000108')">
+                                <ColumnListItem type="Navigation" press="onNavigate(${Spid})">
                                     <cells>
-                                        <ObjectIdentifier title="1000000108" text="" />
-                                        <Text text="Sample Sourcing Project" width="auto" />
+                                        <ObjectIdentifier title="{Spid}" text="" />
+                                        <Text text="{Name}" width="auto" />
                                     </cells>
                                 </ColumnListItem>
                             </items>

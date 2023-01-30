@@ -1,3 +1,5 @@
 {
+	"oNewUrl": "/sap/opu/odata/sap/ZY_WS22_T1_SOURCE_SRV",
+	"oTestUrl": "/sap/opu/odata/sap/Z_00_005_TEST_APP_SRV",
 	"oDataUrl": "/sap/opu/odata/sap/Z_00_005_SUPP_APP_SRV"
 }

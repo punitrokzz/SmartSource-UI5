@@ -1,0 +1,133 @@
+<mvc:View controllerName="smartsourceapp.controller.item" xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:microchart="sap.suite.ui.microchart" xmlns:chart="sap.chart" xmlns:data="sap.chart.data">
+    <uxap:ObjectPageLayout showTitleInHeaderContent="false" showHeaderContent="true" showEditHeaderButton="false" showFooter="false" class="sapUiSizeCompact">
+        <uxap:headerTitle>
+            <uxap:ObjectPageHeader objectTitle="{ path: 'materialInfo>/Matname', formatter:'.formatter.textFormatter' }" objectSubtitle="{materialInfo>/Matnr}" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="true" isObjectSubtitleAlwaysVisible="true" showPlaceholder="false">
+                <uxap:navigationBar>
+                    <Bar>
+                        <contentLeft>
+                            <Button type="Back" press="onNavBack" />
+                        </contentLeft>
+                        <contentMiddle>
+                            <Title text="Smart Source" />
+                        </contentMiddle>
+                        <contentRight />
+                    </Bar>
+                </uxap:navigationBar>
+                <uxap:breadcrumbs>
+                    <Breadcrumbs currentLocationText="{ path: 'materialInfo>/Name1', formatter:'.formatter.textFormatter' }">
+                        <Link text="Home" press="onNavHome" />
+                        <!-- <Link text="{ path: 'projectInfo>/Name', formatter:'.formatter.textFormatter' }" press="onNavBack" /> -->
+                    </Breadcrumbs>
+                </uxap:breadcrumbs>
+            </uxap:ObjectPageHeader>
+        </uxap:headerTitle>
+        <uxap:headerContent>
+            <VBox>
+                <!-- <Title text="Supplier Info" /> -->
+                <ObjectAttribute title="Material Type" text="{ path: 'materialInfo>/Mtart', formatter:'.formatter.textFormatter' }" />
+                <ObjectAttribute title="Material Group" text="{ path: 'materialInfo>/Matkl', formatter:'.formatter.textFormatter' }" />
+            </VBox>
+        </uxap:headerContent>
+
+        <uxap:sections>
+            <uxap:ObjectPageSection title="Supplier List">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection title="Supplier List">
+                        <uxap:blocks>
+                            <Table id="supplierTable" 
+                            items="{/SupplierDataSet}" 
+                            mode="MultiSelect" 
+                            updateFinished="onTableUpdateFinished"
+                            width="100%" 
+                            growing="true" 
+                            growingScrollToLoad="true" 
+                            growingThreshold="25" >
+                                <!-- <headerToolbar>
+                                    <OverflowToolbar design="Transparent">
+                                        <content>
+                                            
+                                            <ToolbarSpacer/>
+                                            <Button text="Run Simulation" press="onSimulate" type="Emphasized" />
+                                            <Button icon="sap-icon://settings" press="_onButtonPress" />
+                                        </content>
+                                    </OverflowToolbar>
+                                </headerToolbar> -->
+                                <headerToolbar>
+                                    <OverflowToolbar design="Transparent">
+                                        <content>
+                                            <Title textAlign="Begin" text="Suppliers" />
+                                            <Title text="(1)" />
+                                            <ToolbarSpacer />
+                                            <Button text="Run Simulation" press="onSimulate" type="Emphasized" />
+                                            <Button icon="sap-icon://settings" press="_onButtonPress" />
+                                        </content>
+                                    </OverflowToolbar>
+                                </headerToolbar>
+                                <columns>
+                                    <Column width="auto" minScreenWidth="Tablet" demandPopin="true">
+                                        <header>
+                                            <Text text="Supplier" width="auto" />
+                                        </header>
+                                    </Column>
+                                    <Column width="auto" minScreenWidth="Phone">
+                                        <header>
+                                            <Text text="Name" width="auto" />
+                                        </header>
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem type="Active" press="onNavigateSupplier(${Snr})">
+                                        <cells>
+                                            <ObjectIdentifier title="{Snr}" text="" />
+                                            <Text text="{ path: 'Name1', formatter:'.formatter.textFormatter' }" width="auto" />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection title="Quotation History">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection title="Quotation History">
+                        <uxap:blocks>
+                            
+                            <Table items="{/QuotationDataSet}" width="100%" growing="true" growingScrollToLoad="true" growingThreshold="25" mode="None">
+                                <headerToolbar>
+                                    <OverflowToolbar design="Transparent">
+                                        <content>
+                                            
+                                            <ToolbarSpacer/>
+                                            <Button text="Test" press="onPress" />
+                                        </content>
+                                    </OverflowToolbar>
+                                </headerToolbar>
+                                <columns>
+                                    <Column width="auto" minScreenWidth="Tablet" demandPopin="true">
+                                        <header>
+                                            <Text text="Supplier" width="auto" />
+                                        </header>
+                                    </Column>
+                                    <Column width="auto" minScreenWidth="Phone">
+                                        <header>
+                                            <Text text="Name" width="auto" />
+                                        </header>
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem type="Active" press="onNavigateSupplier(${Snr})">
+                                        <cells>
+                                            <ObjectIdentifier title="{Snr}" text="" />
+                                            <Text text="{ path: 'Name1', formatter:'.formatter.textFormatter' }" width="auto" />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+        </uxap:sections>
+    </uxap:ObjectPageLayout>
+</mvc:View>
