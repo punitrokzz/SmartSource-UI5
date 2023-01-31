@@ -8,6 +8,15 @@ sap.ui.define([
 	return Controller.extend("smartsourceapp.controller.main", {
 
 		onInit: function () {
+			var that = this;
+			var oSettingsModel = new sap.ui.model.json.JSONModel();
+			oSettingsModel.loadData("model/applicationProperties.json");
+			oSettingsModel.attachRequestCompleted(function () {
+				that.getView().setModel(this, "Settings");
+				var serviceURL = that.getServiceURL();
+				var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
+				that.getView().setModel(oModel);
+			});
 			this.getOwnerComponent()
 				.getRouter()
 				.getRoute("supplier")
@@ -17,6 +26,10 @@ sap.ui.define([
 		_onRouteMatched: function (oEvent) {
 			var projectId = oEvent.getParameter("arguments").projectId;
 			var supplierId = oEvent.getParameter("arguments").supplierId;
+
+			var oView = this.getView();
+			oView.bindElement(`/SupplierDataSet('${supplierId}')`);
+
 			this.getData(supplierId);
 
 			var testURL = this
@@ -40,9 +53,31 @@ sap.ui.define([
 					console.log(oError);
 				},
 			});
+
+			
+			var that = this;
+			var serviceURL = that.getServiceURL();
+			var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
+
+			oModel.read(`/SourcingProjectSet('${projectId}')`, {
+				urlParameters: { '$expand': 'SourceToMaterial' },
+				success: (oData) => {
+					// console.log(oData)
+					console.log(oData.SourceToSps)
+					console.log(oData.SourceToSps.results)
+					// console.log(oData.SourceToMaterial)
+					var oJson = new sap.ui.model.json.JSONModel(oData.SourceToMaterial.results);
+					that.getView().setModel(oJson, 'items');
+				},
+				error: (oError) => {
+					console.log(oError);
+				},
+			});
+
 		},
 
 		getData(supplierId) {
+			console.log( this.getView().getBindingContext())
 			var that = this;
 			if (supplierId) {
 				var oSettingsModel = new sap.ui.model.json.JSONModel();
@@ -93,8 +128,7 @@ sap.ui.define([
 
 					oModel.read(`/SupplierDataSet('${supplierId}')`, {
 						success: (oData) => {
-							var oJson = new sap.ui.model.json.JSONModel(oData);
-							that.getView().setModel(oJson, 'supplier');
+							console.log(oData)
 						},
 						error: (oError) => {
 							console.log(oError);
@@ -105,6 +139,7 @@ sap.ui.define([
 		},
 
 		onOverflowToolbarPress: function () {
+			console.log( this.getView().getBindingContext())
 			var oPanel = this.byId("expandablePanel");
 			oPanel.setExpanded(!oPanel.getExpanded());
 		},

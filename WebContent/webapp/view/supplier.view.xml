@@ -1,7 +1,7 @@
 <mvc:View controllerName="smartsourceapp.controller.supplier" xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:microchart="sap.suite.ui.microchart" xmlns:chart="sap.chart" xmlns:data="sap.chart.data">
     <uxap:ObjectPageLayout showTitleInHeaderContent="false" showHeaderContent="true" showEditHeaderButton="false" showFooter="false" useIconTabBar="true" class="sapUiSizeCompact">
         <uxap:headerTitle>
-            <uxap:ObjectPageHeader objectTitle="{ path: 'supplier>/Name1', formatter:'.formatter.textFormatter' }" objectSubtitle="{supplier>/Snr}" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="true" isObjectSubtitleAlwaysVisible="true" showPlaceholder="false">
+            <uxap:ObjectPageHeader objectTitle="{ path: 'Name1', formatter:'.formatter.textFormatter' }" objectSubtitle="{Snr}" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="true" isObjectSubtitleAlwaysVisible="true" showPlaceholder="false">
                 <uxap:navigationBar>
                     <Bar>
                         <contentLeft>
@@ -14,7 +14,7 @@
                     </Bar>
                 </uxap:navigationBar>
                 <uxap:breadcrumbs>
-                    <Breadcrumbs currentLocationText="{ path: 'supplier>/Name1', formatter:'.formatter.textFormatter' }">
+                    <Breadcrumbs currentLocationText="{ path: 'Name1', formatter:'.formatter.textFormatter' }">
                         <Link text="Home" press="onNavHome" />
                         <Link text="{ path: 'projectInfo>/Name', formatter:'.formatter.textFormatter' }" press="onNavBack" />
                     </Breadcrumbs>
@@ -26,11 +26,11 @@
                 <Title text="Supplier Info" />
                 <HBox>
                     <Label text="Country:" class="sapUiTinyMarginEnd" />
-                    <Text text="{ path: 'supplier>/Land1', formatter:'.formatter.textFormatter' }" />
+                    <Text text="{ path: 'Land1', formatter:'.formatter.textFormatter' }" />
                 </HBox>
                 <HBox>
                     <Label text="Ort:" class="sapUiTinyMarginEnd" />
-                    <Text text="{ path: 'supplier>/Ort1', formatter:'.formatter.textFormatter' }" />
+                    <Text text="{ path: 'Ort1', formatter:'.formatter.textFormatter' }" />
                 </HBox>
             </VBox>
             <VBox>
@@ -129,212 +129,46 @@
                 <uxap:subSections>
                     <uxap:ObjectPageSubSection title="Sourcing Items">
                         <uxap:blocks>
-                            <VBox id="simulationList" items="{ path : '/SimulationSet', parameters : { $orderby : 'Id'  }}" alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
-                                <items>
-                                    <Panel height="auto" width="100%" expandable="true" expandAnimation="true" backgroundDesign="Solid">
-                                        <headerToolbar>
-                                            <OverflowToolbar active="true" press="onOverflowToolbarPress">
-                                                <Title text="Item {Id}" />
-                                                <ToolbarSpacer />
-                                                <HBox alignItems="Center">
-                                                    <Label text="Simulated Target Price:" class="sapUiTinyMarginEnd" vAlign="Middle" />
-                                                    <ObjectNumber number="{= ${Price} !== 0 ? ${Price} : '-'}" unit="USD" />
-                                                </HBox>
-                                                <Button icon="sap-icon://settings" press="_onButtonPress" />
-                                            </OverflowToolbar>
-                                        </headerToolbar>
+                            <Table id="supplierTable" items="{items>/}" updateFinished="onTableUpdateFinished" width="100%" growing="true" growingScrollToLoad="true" growingThreshold="25">
+                                <headerToolbar>
+                                    <OverflowToolbar design="Transparent">
                                         <content>
-                                            <!-- <HBox alignItems="End" direction="Row" fitContainer="false" width="auto" height="auto" justifyContent="End" renderType="Div" visible="true" displayInline="false" class="sapUiSmallMargin">
-                                                <items>
-                                                    <HBox alignItems="Center" direction="Row" fitContainer="false" width="30px" height="30px" justifyContent="End" renderType="Div" visible="true" displayInline="false">
-                                                        <items>
-                                                            <Title text="Simulated Target Price:" titleStyle="H3" width="auto" textAlign="Begin" visible="true" wrapping="false" />
-                                                            <Title text="148.00 USD" titleStyle="H4" width="auto" textAlign="Begin" visible="true" wrapping="false" class="sapUiSmallMargin" />
-                                                            <Button text="" type="Emphasized" icon="sap-icon://settings" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onButtonPress" />
-                                                        </items>
-                                                        <layoutData />
-                                                    </HBox>
-                                                </items>
-                                                <layoutData />
-                                            </HBox> -->
-                                            <IconTabBar expandable="false" expanded="true" applyContentPadding="false" backgroundDesign="Solid" upperCase="false" visible="true" selectedKey="Ok" class="sapUiContentPadding">
-                                                <items>
-                                                    <IconTabFilter icon="sap-icon://notes" iconColor="Default" text="" count="3" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
-                                                        <content>
-                                                            <Title text="Negotiation History" titleStyle="H4" width="auto" textAlign="Begin" visible="true" wrapping="false" class="sapUiTinyMargin" />
-                                                            <Table width="100%" noDataText="No data" mode="None" showSeparators="All" growing="true" growingScrollToLoad="true">
-                                                                <infoToolbar />
-                                                                <headerToolbar />
-                                                                <columns>
-                                                                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
-                                                                        <header>
-                                                                            <Text text="Round" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
-                                                                        </header>
-                                                                        <footer />
-                                                                    </Column>
-                                                                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
-                                                                        <header>
-                                                                            <Text text="Date" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
-                                                                        </header>
-                                                                        <footer />
-                                                                    </Column>
-                                                                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
-                                                                        <header>
-                                                                            <Text text="Quotation" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
-                                                                        </header>
-                                                                        <footer />
-                                                                    </Column>
-                                                                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
-                                                                        <header>
-                                                                            <Text text="Negotiation Result" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
-                                                                        </header>
-                                                                        <footer />
-                                                                    </Column>
-                                                                </columns>
-                                                                <items>
-                                                                    <ColumnListItem type="Active">
-                                                                        <cells>
-                                                                            <Text text="Round 1" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
-                                                                            <Text text="06.07.2021" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
-                                                                            <ObjectNumber number="160.00" unit="USD" emphasized="true" state="None" />
-                                                                            <Text text="155.00 USD" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
-                                                                        </cells>
-                                                                    </ColumnListItem>
-                                                                    <ColumnListItem type="Active">
-                                                                        <cells>
-                                                                            <Text text="Round 2" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
-                                                                            <Text text="15.03.2022" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
-                                                                            <ObjectNumber number="145.00" unit="USD" emphasized="true" state="None" />
-                                                                            <Text text="150.00 USD" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
-                                                                        </cells>
-                                                                    </ColumnListItem>
-                                                                    <ColumnListItem type="Active">
-                                                                        <cells>
-                                                                            <Text text="Round3" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
-                                                                            <Text text="12.09.2022" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
-                                                                            <ObjectNumber number="150.00" unit="USD" emphasized="true" state="None" />
-                                                                            <Text text="- USD" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
-                                                                        </cells>
-                                                                    </ColumnListItem>
-                                                                </items>
-                                                            </Table>
-                                                        </content>
-                                                    </IconTabFilter>
-                                                    <IconTabSeparator icon="" iconDensityAware="false" />
-                                                    <IconTabFilter icon="sap-icon://manager-insight" iconColor="Default" text="" count="" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
-                                                        <content>
-                                                            <Title text="Analysis" titleStyle="H4" width="auto" textAlign="Begin" visible="false" wrapping="false" class="sapUiTinyMargin" />
-                                                            <HBox alignItems="Stretch" direction="Row" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
-                                                                <items>
-                                                                    <VBox alignItems="Stretch" direction="Column" fitContainer="false" width="40%" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
-                                                                        <items>
-                                                                            <VBox alignItems="Stretch" direction="Column" fitContainer="false" width="40%" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
-                                                                                <items>
-                                                                                    <Title text="Item Evaluation" titleStyle="H4" width="auto" textAlign="End" visible="true" wrapping="false" />
-                                                                                    <HBox alignItems="Stretch" direction="Row" fitContainer="false" width="588.5625px" height="auto" justifyContent="SpaceBetween" renderType="Div" visible="true" displayInline="false">
-                                                                                        <items>
-                                                                                            <VBox alignItems="End" direction="Column" fitContainer="false" width="25%" height="auto" justifyContent="SpaceAround" renderType="Div" visible="true" displayInline="false">
-                                                                                                <items>
-                                                                                                    <Title text="Price" titleStyle="H5" width="auto" textAlign="Begin" visible="true" wrapping="false" />
-                                                                                                    <Title text="Quality" titleStyle="H5" width="auto" textAlign="Begin" visible="true" wrapping="false" />
-                                                                                                    <Title text="Reliability" titleStyle="H5" width="auto" textAlign="Begin" visible="true" wrapping="false" />
-                                                                                                    <Title text="Communication" titleStyle="H5" width="auto" textAlign="Begin" visible="true" wrapping="false" />
-                                                                                                    <Title text="Financially stable" titleStyle="H5" width="auto" textAlign="Begin" visible="true" wrapping="false" />
-                                                                                                    <Title text="Capacity" titleStyle="H5" width="auto" textAlign="Begin" visible="true" wrapping="false" />
-                                                                                                </items>
-                                                                                                <layoutData />
-                                                                                            </VBox>
-                                                                                            <VBox alignItems="Stretch" direction="Column" fitContainer="false" width="70%" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
-                                                                                                <items>
-                                                                                                    <RatingIndicator value="3" maxValue="5" visualMode="Half" enabled="true" visible="true" editable="true" />
-                                                                                                    <RatingIndicator value="3" maxValue="5" visualMode="Half" enabled="true" visible="true" editable="true" />
-                                                                                                    <RatingIndicator value="2" maxValue="5" visualMode="Half" enabled="true" visible="true" editable="true" />
-                                                                                                    <RatingIndicator value="3" maxValue="5" visualMode="Half" enabled="true" visible="true" editable="true" />
-                                                                                                    <RatingIndicator value="3" maxValue="5" visualMode="Half" enabled="true" visible="true" editable="true" />
-                                                                                                </items>
-                                                                                                <layoutData />
-                                                                                            </VBox>
-                                                                                        </items>
-                                                                                        <layoutData />
-                                                                                    </HBox>
-                                                                                </items>
-                                                                                <layoutData />
-                                                                            </VBox>
-                                                                            <VBox alignItems="Start" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
-                                                                                <items>
-                                                                                    <Title text="Analysis" titleStyle="Auto" width="auto" textAlign="Begin" visible="true" wrapping="false" />
-                                                                                    <Text
-                                                                                        text="Lorem ipsum dolor st amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat"
-                                                                                        width="auto"
-                                                                                        maxLines="10"
-                                                                                        wrapping="true"
-                                                                                        textAlign="Begin"
-                                                                                        textDirection="Inherit"
-                                                                                        visible="true"
-                                                                                    />
-                                                                                </items>
-                                                                                <layoutData />
-                                                                            </VBox>
-                                                                        </items>
-                                                                        <layoutData />
-                                                                    </VBox>
-                                                                    <VBox alignItems="Stretch" direction="Column" fitContainer="false" width="60%" height="auto" justifyContent="Center" renderType="Div" visible="true" displayInline="false">
-                                                                        <items>
-                                                                            <Title text="Item Price History" titleStyle="H4" width="auto" textAlign="End" visible="true" wrapping="false" />
-                                                                            <chart:Chart
-                                                                                id="Fiori_ObjectPage_ObjectPage_0-b8sgaz9ndsyf8nwjtiwaeyrm7_S7-sections-Fiori_ObjectPage_Section-1671355573311-sectionContent-sap_m_VBox-1-items-sap_m_Panel-1-content-sap_m_IconTabBar-1671368135126-items-sap_m_IconTabFilter-3-content-sap_m_HBox-2-items-sap_m_VBox-2-items-sap_chart_CombinedChart-2"
-                                                                                width="100%"
-                                                                                height="400px"
-                                                                                visibleDimensions="__id"
-                                                                                visibleMeasures="mea0,mea1"
-                                                                                chartType="combination"
-                                                                                vizProperties="{staticDataModel>/Fiori_ObjectPage_ObjectPage_0-b8sgaz9ndsyf8nwjtiwaeyrm7_S7-sections-Fiori_ObjectPage_Section-1671355573311-sectionContent-sap_m_VBox-1-items-sap_m_Panel-1-content-sap_m_IconTabBar-1671368135126-items-sap_m_IconTabFilter-3-content-sap_m_HBox-2-items-sap_m_VBox-2-items-sap_chart_CombinedChart-2/vizProperties}"
-                                                                                uiConfig="{}"
-                                                                            >
-                                                                                <chart:dimensions>
-                                                                                    <data:Dimension name="__id" label="Year" role="series" textProperty="dim0" />
-                                                                                </chart:dimensions>
-                                                                                <chart:measures>
-                                                                                    <data:Measure name="mea0" label="Default Gross Price" role="axis2" />
-                                                                                    <data:Measure name="mea1" label="Supplier Price" role="axis2" />
-                                                                                </chart:measures>
-                                                                            </chart:Chart>
-                                                                        </items>
-                                                                        <layoutData />
-                                                                    </VBox>
-                                                                </items>
-                                                                <layoutData />
-                                                            </HBox>
-                                                        </content>
-                                                    </IconTabFilter>
-                                                    <IconTabSeparator icon="" iconDensityAware="false" />
-                                                    <IconTabFilter icon="sap-icon://user-edit" iconColor="Default" text="" count="" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
-                                                        <content>
-                                                            <Title text="Notes" titleStyle="H4" width="auto" textAlign="Begin" visible="true" wrapping="false" class="sapUiTinyMargin" />
-                                                            <List width="100%" growing="false" growingThreshold="20" growingScrollToLoad="false" backgroundDesign="Solid">
-                                                                <items>
-                                                                    <FeedListItem
-                                                                        icon=""
-                                                                        sender="Alexandrina Victoria"
-                                                                        text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat"
-                                                                        info="Request"
-                                                                        timestamp="March 03 2016"
-                                                                    />
-                                                                </items>
-                                                            </List>
-                                                            <FeedInput showIcon="true" icon="" placeholder="Post something here" enabled="true" visible="true" maxLength="0" buttonTooltip="Submit" />
-                                                        </content>
-                                                    </IconTabFilter>
-                                                </items>
-                                                <content>
-                                                    <Text text="Tab Bar Content goes here ..." width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
-                                                </content>
-                                            </IconTabBar>
+                                            <Title textAlign="Begin" text="Items" />
+                                            <Title text="(1)" />
+                                            <!-- <ToolbarSpacer />
+                                            <Button text="Run Simulation" press="onSimulate" type="Emphasized" />
+                                            <Button icon="sap-icon://settings" press="_onButtonPress" /> -->
                                         </content>
-                                    </Panel>
+                                    </OverflowToolbar>
+                                </headerToolbar>
+                                <columns>
+                                    <Column width="auto" minScreenWidth="Tablet" demandPopin="true">
+                                        <header>
+                                            <Text text="Supplier" width="auto" />
+                                        </header>
+                                    </Column>
+                                    <!-- <Column width="auto" minScreenWidth="Phone">
+                                        <header>
+                                            <Text text="Name" width="auto" />
+                                        </header>
+                                    </Column> -->
+                                    <Column width="auto" minScreenWidth="Phone">
+                                        <header>
+                                            <Text text="Estimated Optimal Price" width="auto" />
+                                        </header>
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem type="Active" press="onNavigateSupplier(${Matnr})">
+                                        <cells>
+                                            <ObjectIdentifier title="{items>Matnr}" text="" />
+                                            <!-- <Text text="{ path: 'supp>Name1', formatter:'.formatter.textFormatter' }" width="auto" /> -->
+                                            <Text text="" width="auto" />
+                                        </cells>
+                                    </ColumnListItem>
                                 </items>
-                                <layoutData />
-                            </VBox>
+                            </Table>
+                        
                         </uxap:blocks>
                     </uxap:ObjectPageSubSection>
                 </uxap:subSections>

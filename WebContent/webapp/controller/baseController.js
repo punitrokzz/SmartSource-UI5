@@ -49,6 +49,19 @@ sap.ui.define([
 			return this.getView().getModel("Settings").getProperty("/oDataUrl");
 		},
 
+		onTableUpdateFinished: function (oEvent) {
+			var oTable = oEvent.getSource();
+			var oHeaderbar = oTable.getAggregation("headerToolbar");
+			if (oHeaderbar && oHeaderbar.getAggregation("content")[1]) {
+				var oTitle = oHeaderbar.getAggregation("content")[1];
+				console.log(oTable.getBinding("items"))
+				if (oTable.getBinding("items") && oTable.getBinding("items").isLengthFinal()) {
+					oTitle.setText("(" + oTable.getBinding("items").getLength() + ")");
+				} else {
+					oTitle.setText("");
+				}
+			}
+		},
 	});
 
 });

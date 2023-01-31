@@ -1,7 +1,7 @@
 <mvc:View controllerName="smartsourceapp.controller.projectDetail" xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:microchart="sap.suite.ui.microchart">
     <uxap:ObjectPageLayout showTitleInHeaderContent="false" showHeaderContent="true" showEditHeaderButton="false" showFooter="false" class="sapUiSizeCompact">
         <uxap:headerTitle>
-            <uxap:ObjectPageHeader objectTitle="{ path: 'projectInfo>/Spid', formatter:'.formatter.textFormatter' }" objectSubtitle="{projectInfo>/Id}" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="true" isObjectSubtitleAlwaysVisible="true" showPlaceholder="false">
+            <uxap:ObjectPageHeader objectTitle="{ path: 'Spid' }" objectSubtitle="{projectInfo>/Id}" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="true" isObjectSubtitleAlwaysVisible="true" showPlaceholder="false">
                 <uxap:navigationBar>
                     <Bar>
                         <contentLeft>
@@ -24,15 +24,16 @@
             <VBox>
                 <HBox>
                     <Label text="Submission Deadline:" class="sapUiTinyMarginEnd" />
-                    <Text text="{ path: 'projectInfo>/Smd', formatter:'.formatter.dateFormatter' }" />
+                    <Text text="{ path: 'Smd', formatter:'.formatter.dateFormatter' }" />
                 </HBox>
                 <HBox>
                     <Label text="Total Target Amount:" class="sapUiTinyMarginEnd" />
-                    <ObjectNumber number="{projectInfo>/Tamt}" unit="USD" />
+                    <ObjectNumber number="{Tamt}" unit="{Dctcurr}" />
                 </HBox>
             </VBox>
             <VBox>
                 <Title text="Number of Participants" />
+                <!-- <Title text="Number of Participants" /> -->
             </VBox>
         </uxap:headerContent>
         <uxap:sections>
@@ -41,32 +42,79 @@
                     <uxap:ObjectPageSubSection title="General Information">
                         <uxap:blocks>
                             <l:VerticalLayout width="100%" class="gridWrapper">
-                                <l:Grid containerQuery="true" defaultSpan="XL2 L3">
-                                    <VBox>
+                                <l:Grid containerQuery="true" defaultSpan="XL3 L3">
+                                    <!-- <VBox>
                                         <Title text="Basic Data" />
-                                        <Label text="Material Group" vAlign="Middle" />
-                                        <Text text="Basic Data" />
-                                        <ObjectAttribute title="Country" text="{ path: 'supplier>/Land1', formatter:'.formatter.textFormatter' }" />
-                                        <ObjectAttribute title="Ort" text="{ path: 'supplier>/Ort1', formatter:'.formatter.textFormatter' }" />
+                                        <Label text="Material Group:" vAlign="Middle" />
+                                        <Text text="{Matkl}" />
+                                        <Label text="Published On:" vAlign="Middle" />
+                                        <Text text="{Pbdt}" />
+                                        <Label text="Document Currency:" vAlign="Middle" />
+                                        <Text text="{Dctcurr}" />
                                     </VBox>
                                     <VBox>
                                         <Title text="Supplier Quotation Settings" />
-                                        <Label text="Material Group" vAlign="Middle" />
-                                        <Text text="Basic Data" />
-                                        <ObjectAttribute title="Country" text="{ path: 'supplier>/Land1', formatter:'.formatter.textFormatter' }" />
-                                        <ObjectAttribute title="Ort" text="{ path: 'supplier>/Ort1', formatter:'.formatter.textFormatter' }" />
+                                        <Label text="Allowed Currencies:" vAlign="Middle" />
+                                        <Text text="{Allcurr}" />
                                     </VBox>
                                     <VBox>
                                         <Title text="Organization" />
-                                        <Label text="Material Group" vAlign="Middle" />
-                                        <Text text="Basic Data" />
-                                        <ObjectAttribute title="Country" text="{ path: 'supplier>/Land1', formatter:'.formatter.textFormatter' }" />
-                                        <ObjectAttribute title="Ort" text="{ path: 'supplier>/Ort1', formatter:'.formatter.textFormatter' }" />
+                                        <Label text="Central Purchasing Group:" vAlign="Middle" />
+                                        <Text text="{Ekgrp}" />
+                                        <Label text="Central Company Organization:" vAlign="Middle" />
+                                        <Text text="{Ekorg}" />
+                                        <Label text="Central Company Code:" vAlign="Middle" />
+                                        <Text text="{Bukrs}" />
                                     </VBox>
                                     <VBox>
                                         <Title text="Contact Details" />
                                         <Label text="Purchaser Responsible:" vAlign="Middle" />
-                                        <Text text="Basic Data" />
+                                        <Text text="{Prr}" />
+                                    </VBox> -->
+
+                                    <VBox>
+                                        <Title text="Basic Data" />
+                                        <HBox class="sapUiTinyMarginTop">
+                                            <Label text="Material Group:" class="sapUiTinyMarginEnd" vAlign="Middle" />
+                                            <Text text="{ path: 'Matkl', formatter:'.formatter.textFormatter' }" />
+                                        </HBox>
+                                        <HBox class="sapUiTinyMarginTop">
+                                            <Label text="Submission Deadline:" class="sapUiTinyMarginEnd" vAlign="Middle" />
+                                            <Text text="{ path: 'Pbdt', formatter:'.formatter.dateFormatter' }" />
+                                        </HBox>
+                                        <HBox class="sapUiTinyMarginTop">
+                                            <Label text="Document Currency:" class="sapUiTinyMarginEnd" vAlign="Middle" />
+                                            <Text text="{Dctcurr}" />
+                                        </HBox>
+                                    </VBox>
+                                    <VBox>
+                                        <Title text="Supplier Quotation Settings" />
+                                        <HBox class="sapUiTinyMarginTop">
+                                            <Label text="Allowed Currency:" class="sapUiTinyMarginEnd" vAlign="Middle" />
+                                            <Text text="{Allcurr}" />
+                                        </HBox>
+                                    </VBox>
+                                    <VBox>
+                                        <Title text="Organization" />
+                                        <HBox class="sapUiTinyMarginTop">
+                                            <Label text="Central Purchasing Group:" class="sapUiTinyMarginEnd" vAlign="Middle" />
+                                            <Text text="{Ekgrp}" />
+                                        </HBox>
+                                        <HBox class="sapUiTinyMarginTop">
+                                            <Label text="Central Company Organization:" class="sapUiTinyMarginEnd" vAlign="Middle" />
+                                            <Text text="{Ekorg}" />
+                                        </HBox>
+                                        <HBox class="sapUiTinyMarginTop">
+                                            <Label text="Central Company Code:" class="sapUiTinyMarginEnd" vAlign="Middle" />
+                                            <Text text="{Bukrs}" />
+                                        </HBox>
+                                    </VBox>
+                                    <VBox>
+                                        <Title text="Contact Details" />
+                                        <HBox class="sapUiTinyMarginTop">
+                                            <Label text="Purchaser Responsible:" class="sapUiTinyMarginEnd" vAlign="Middle" />
+                                            <Text text="{ path: 'Prr', formatter:'.formatter.textFormatter' }" />
+                                        </HBox>
                                     </VBox>
                                 </l:Grid>
                             </l:VerticalLayout>
@@ -78,11 +126,19 @@
                 <uxap:subSections>
                     <uxap:ObjectPageSubSection title="">
                         <uxap:blocks>
-                            <Table items="{/MaterialDataSet}" width="100%" growing="true" growingScrollToLoad="true" growingThreshold="25" mode="None">
+                            <Table items="{SourceToMaterial}" updateFinished="onTableUpdateFinished" width="100%" growing="true" growingScrollToLoad="true" growingThreshold="25" mode="None">
+                                <headerToolbar>
+                                    <OverflowToolbar design="Transparent">
+                                        <content>
+                                            <Title textAlign="Begin" text="Items" />
+                                            <Title text="(1)" />
+                                        </content>
+                                    </OverflowToolbar>
+                                </headerToolbar>
                                 <columns>
                                     <Column width="auto" minScreenWidth="Tablet" demandPopin="true">
                                         <header>
-                                            <Text text="Item Number" width="auto" />
+                                            <Text text="Material Number" width="auto" />
                                         </header>
                                     </Column>
                                     <Column width="auto" minScreenWidth="Phone">
@@ -115,7 +171,15 @@
                 <uxap:subSections>
                     <uxap:ObjectPageSubSection title="Supplier List">
                         <uxap:blocks>
-                            <Table items="{/SupplierDataSet}" width="100%" growing="true" growingScrollToLoad="true" growingThreshold="25" mode="None">
+                            <Table items="{SourceToSps}" updateFinished="onTableUpdateFinished" width="100%" growing="true" growingScrollToLoad="true" growingThreshold="25" mode="None">
+                                <headerToolbar>
+                                    <OverflowToolbar design="Transparent">
+                                        <content>
+                                            <Title textAlign="Begin" text="Supplier List" />
+                                            <Title text="(1)" />
+                                        </content>
+                                    </OverflowToolbar>
+                                </headerToolbar>
                                 <columns>
                                     <Column width="auto" minScreenWidth="Tablet" demandPopin="true">
                                         <header>

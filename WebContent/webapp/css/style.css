@@ -6,3 +6,6 @@
 header.sapMPanelWrappingDivTb {
   background-color: #fff;
 }
+.sapUxAPObjectPageSectionHeader {
+  display: none !important;
+}
