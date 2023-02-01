@@ -1,7 +1,4 @@
-<mvc:View controllerName="smartsourceapp.controller.main" 
-    xmlns:mvc="sap.ui.core.mvc" 
-    xmlns="sap.m"
-	xmlns:tnt="sap.tnt">
+<mvc:View controllerName="smartsourceapp.controller.main" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:tnt="sap.tnt" xmlns:core="sap.ui.core">
     <Page id="page" title="{i18n>title}">
         <customHeader>
             <Toolbar>
@@ -14,35 +11,54 @@
             <IconTabBar id="idIconTabBarNoIcons" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
                 <items>
                     <IconTabFilter text="SUPPLIERS NEWS" key="news">
+                        <!-- <form:SimpleForm layout="ResponsiveGridLayout" editable="true" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" columnsS="3">
+                            <Label text="Choose an airline to filter" for="airlines" />
+                            <ComboBox id="airlines" items="{/SupplierDataSet}">
+                                <core:ListItem key="{Snr}" text="{Name1}" />
+                            </ComboBox>
+                            <Button type="Emphasized" text="Apply Filter" press="onFilter" />
+                            <Button type="Reject" text="Clear Filter" press="onClear" />
+                        </form:SimpleForm> -->
+                        <!-- <headerToolbar> -->
+                        <Toolbar design="Transparent">
+                            <content>
+                                <!-- <Title textAlign="Begin" text="Items" />
+                                    <Title text="(1)" /> -->
+                                <ToolbarSpacer />
+                                <Label text="Choose a supplier:" for="airlines" />
+                                <ComboBox width="260px" showClearIcon="true" items="{/SupplierDataSet}" change="handleChange">
+                                    <core:Item key="{Snr}" text="{Name1}" />
+                                </ComboBox>
+                                <!-- <ToolbarSpacer />
+                                            <Button text="Run Simulation" press="onSimulate" type="Emphasized" />
+                                            <Button icon="sap-icon://settings" press="_onButtonPress" /> -->
+                            </content>
+                        </Toolbar>
+                        <!-- </headerToolbar> -->
                         <List items="{news>/}">
                             <CustomListItem>
-                            <HBox alignItems="Center">
-                                <!-- <Image src="https://toyota-cms-media.s3.amazonaws.com/wp-content/uploads/2022/11/Toyota-bZ-Compact-SUV-Concept_002-1-1500x844.jpg" width="15em" /> -->
+                                <HBox alignItems="Center">
+                                    <!-- <Image src="https://toyota-cms-media.s3.amazonaws.com/wp-content/uploads/2022/11/Toyota-bZ-Compact-SUV-Concept_002-1-1500x844.jpg" width="15em" /> -->
 
-                                <VBox class="sapUiSmallMargin" >
-                                    <FlexBox alignItems="Start" justifyContent="SpaceBetween">
-                                        <Label text="{ path: 'news>newsurl', formatter:'.utilities.getHostname' }" design="Bold" />
-                                        <!-- <Label text="05/01/2023" /> -->
-                                    </FlexBox>
-                                    <Title level="H6" titleStyle="H5">
-                                        <Link text="{ path: 'news>newsurl', formatter:'.utilities.getTitle' }" 
-                                        target="_blank"
-                                         href="{news>newsurl}" emphasized="true" wrapping="true" />
-                                    </Title>
-                                    <Text
-                                        text="{news>highlight}"
-                                        width="auto"
-                                        maxLines="6"
-                                        wrapping="true"
-                                        textAlign="Begin"
-                                        textDirection="Inherit"
-                                        visible="true"
-                                    />
-                                    <HBox class="sapUiTinyMarginTop">
-                                        <Label text="Related Supplier:" class="sapUiTinyMarginEnd"/>
-                                        <tnt:InfoLabel text="{news>supplier}" colorScheme="6" />
-                                    </HBox>
-                                </VBox>
+                                    <VBox class="sapUiSmallMargin">
+                                        <FlexBox alignItems="Start" justifyContent="SpaceBetween">
+                                            <Label text="{ path: 'news>newsurl', formatter:'.utilities.getHostname' }" design="Bold" />
+                                            <!-- <Label text="05/01/2023" /> -->
+                                        </FlexBox>
+                                        <Title level="H6" titleStyle="H5">
+                                            <Link text="{ path: 'news>newsurl', formatter:'.utilities.getTitle' }" target="_blank" href="{news>newsurl}" emphasized="true" wrapping="true" />
+                                        </Title>
+                                        <Text text="{news>highlight}" width="auto" maxLines="6" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <HBox class="sapUiTinyMarginTop">
+                                            <Label text="Related Supplier:" class="sapUiTinyMarginEnd" />
+                                            <tnt:InfoLabel text="{news>supplier}" colorScheme="1" displayOnly="true" />
+                                            <Label text="Sentiment:" wrapping="true" class="sapUiSmallMarginBegin sapUiTinyMarginEnd" />
+                                            <ObjectStatus visible="{=!${news>sentiment}}" text="Unknown" inverted="true" state="None" />
+                                            <ObjectStatus visible="{=${news>sentiment}==='Negative'}" text="Negative" inverted="true" state="Indication01" />
+                                            <ObjectStatus visible="{=${news>sentiment}==='Positive'}" text="Positive" inverted="true" state="Success" />
+                                            <ObjectStatus visible="{=${news>sentiment}==='Neutral'}" text="Neutral" inverted="true" state="Information" />
+                                        </HBox>
+                                    </VBox>
                                 </HBox>
                             </CustomListItem>
                         </List>

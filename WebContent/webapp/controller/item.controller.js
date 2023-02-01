@@ -92,6 +92,9 @@ sap.ui.define([
 		},
 
 		onPress: async function () {
+			// this.getView().getModel('supp')
+			console.log(this.getView().getModel('supp'))
+
 			var Spid = this.getView().getModel('projectInfo').getProperty('/Spid')
 			var Matnr = this.getView().getModel('materialInfo').getProperty('/Matnr')
 			var stprs = this.getView().getModel('materialInfo').getProperty('/Stprs')
@@ -114,29 +117,33 @@ sap.ui.define([
 			// 	},
 			// });
 			var oTable = this.getView().byId("supplierTable");
-			console.log(oTable)
+			// console.log(oTable)
+			// console.log(oTable.getItems())
+			console.log(oTable.getItems()[0])
+			// console.log(oTable.getItems()[0].getBindingContext())
+			// console.log(oTable.getItems()[0].getBindingContext().getProperty('/Snr'))
+			// for (var i = 0; i < oTable.getItems().length; i++) {
 
-			for (var i = 0; i < oTable.getItems().length; i++) {
+			// 	var sPath = oTable.getItems()[i].getBindingContext().getPath()
+			// 	var Snr = this.getView().getModel().getProperty(sPath + '/Snr')
 
-				var sPath = oTable.getItems()[i].getBindingContext().getPath()
-				var Snr = this.getView().getModel().getProperty(sPath + '/Snr')
-				var Qaid = new Date().valueOf() + '-' + i
-				var randomPrs = Math.random() * (maxPrs - minPrs) + minPrs;
-				var Ofp = Math.floor(randomPrs)
-				// console.log({ Qaid, Rnr: 1, Snr, Matnr, Spid, Ofp })
 
-				await new Promise((resolve, reject) =>
-					oModel.create("/QuotationDataSet", { Qaid, Rnr: '1', Snr, Matnr, Spid, Ofp }, {
-						success: function (oData, oResponse) {
-							console.log(oData)
-							resolve(oData)
-						},
-						error: function (oError) {
-							reject(oError)
-						},
-					})
-				)
-			}
+			// 	var Qaid = new Date().valueOf() + '-' + i
+			// 	var randomPrs = Math.random() * (maxPrs - minPrs) + minPrs;
+			// 	var Ofp = Math.floor(randomPrs)
+			// 	// console.log({ Qaid, Rnr: 1, Snr, Matnr, Spid, Ofp })
+			// 	await new Promise((resolve, reject) =>
+			// 		oModel.create("/QuotationDataSet", { Qaid, Rnr: '1', Snr, Matnr, Spid, Ofp }, {
+			// 			success: function (oData, oResponse) {
+			// 				console.log(oData)
+			// 				resolve(oData)
+			// 			},
+			// 			error: function (oError) {
+			// 				reject(oError)
+			// 			},
+			// 		})
+			// 	)
+			// }
 
 			console.log("finish!!!")
 
@@ -208,72 +215,8 @@ sap.ui.define([
 			// });
 		},
 		onUpdate: function () {
-			var supplierTable = this.getView().byId("supplierTable");
-			console.log(supplierTable)
-
-			// var oEntry = oItem.getBindingContext("yourODataModel").getObject();
-			// var testURL = this
-			// 	.getView()
-			// 	.getModel("Settings")
-			// 	.getProperty("/oTestUrl");
-			// var oTestModel = new sap.ui.model.odata.v2.ODataModel(testURL);
-			// this.getView().setModel(oTestModel);
-			// oTestModel.create("/ProjectSet", {}, {
-			// 	success: function (oData, oResponse) {
-			// 		console.log(oData)
-			// 		sap.m.MessageToast.show("Project successfully created!");
-			// 		oTestModel.refresh();
-			// 	},
-			// 	error: function (oError) {
-			// 		sap.m.MessageToast.show("Error during creation");
-			// 	},
-			// });
-		},
-
-
-
-		onCreate: function () {
-
-		},
-
-		onOverflowToolbarPress: function () {
-			var oPanel = this.byId("expandablePanel");
-			oPanel.setExpanded(!oPanel.getExpanded());
-		},
-		_onButtonPress: function (oEvent) {
-
-			var sDialogName = "simulationDialog";
-			this.mDialogs = this.mDialogs || {};
-			// var oDialog = this.mDialogs[sDialogName];
-			// console.log("this.mDialogs", this.mDialogs, oDialog)
-			// if (!oDialog) {
-			// 	oDialog = new Dialog(this.getView());
-			// 	this.mDialogs[sDialogName] = oDialog;
-			// 	// For navigation.
-			// 	oDialog.setRouter(this.oRouter);
-			// }
-			var oDialog = new Dialog(this.getView());
-			// console.log("this.mDialogs", this.mDialogs, oDialog)
-			var context = oEvent.getSource().getBindingContext();
-			console.log("context", context)
-			oDialog._oControl.setBindingContext(context);
-			oDialog.open();
-
-		},
-
-		// colorRows : function(oTable) {
-
-		//     var sPath = oTable.getBinding("items").getPath(); //path to table's data
-		//     var oModel = this.getView().getModel(); //model which is bound to the table
-		//     //or var oModel = oTable.getModel(); if the model is bound directly to the table
-		//     var aData = oModel.getProperty(sPath);//array of rows
-		//     var rowCount = aData.length; 
-		//     var currentRowContext;
-		//     for (var i = 0; i < rowCount; i++) {
-		//         currentRowContext = aData[i]; 
-		//     }
-		// }
-		onTableUpdateFinished: function (oEvent) {
+			var oTable = this.getView().byId("supplierTable");
+			console.log(oTable)
 			var oTable = oEvent.getSource();
 			console.log(oTable.getItems())
 			var oModel = oTable.getModel();
@@ -323,7 +266,103 @@ sap.ui.define([
 			// 	currentRowContext = aData[i];
 			// 	console.log(currentRowContext)
 			// }
+	
 		},
+
+
+		onOverflowToolbarPress: function () {
+			var oPanel = this.byId("expandablePanel");
+			oPanel.setExpanded(!oPanel.getExpanded());
+		},
+		_onButtonPress: function (oEvent) {
+			var sDialogName = "simulationDialog";
+			this.mDialogs = this.mDialogs || {};
+			// var oDialog = this.mDialogs[sDialogName];
+			// console.log("this.mDialogs", this.mDialogs, oDialog)
+			// if (!oDialog) {
+			// 	oDialog = new Dialog(this.getView());
+			// 	this.mDialogs[sDialogName] = oDialog;
+			// 	// For navigation.
+			// 	oDialog.setRouter(this.oRouter);
+			// }
+			var oDialog = new Dialog(this.getView());
+			// console.log("this.mDialogs", this.mDialogs, oDialog)
+			var context = oEvent.getSource().getBindingContext();
+			console.log("context", context)
+			oDialog._oControl.setBindingContext(context);
+			oDialog.open();
+		},
+
+		// colorRows : function(oTable) {
+
+		//     var sPath = oTable.getBinding("items").getPath(); //path to table's data
+		//     var oModel = this.getView().getModel(); //model which is bound to the table
+		//     //or var oModel = oTable.getModel(); if the model is bound directly to the table
+		//     var aData = oModel.getProperty(sPath);//array of rows
+		//     var rowCount = aData.length; 
+		//     var currentRowContext;
+		//     for (var i = 0; i < rowCount; i++) {
+		//         currentRowContext = aData[i]; 
+		//     }
+		// }
+
+
+
+
+
+
+		// onTableUpdateFinished: function (oEvent) {
+		// 	var oTable = oEvent.getSource();
+		// 	console.log(oTable.getItems())
+		// 	var oModel = oTable.getModel();
+		// 	console.log(oModel)
+		// 	var oData = oModel.getData();
+		// 	console.log(oData)
+		// 	var sPath = oTable.getBinding("items").getPath(); //path to table's data
+		// 	// console.log(sPath)
+		// 	var aData = oModel.getProperty(sPath);//array of rows
+		// 	console.log(oTable.getAggregation("items"))
+		// 	console.log(oTable.getBinding("items"))
+		// 	console.log(aData)
+		// 	var that = this
+		// 	for (var i = 0; i < oTable.getItems().length; i++) {
+
+		// 		// setTimeout(()=> {
+		// 		// console.log(i)
+		// 		var oProperty = that.getView().getModel().getProperty(oTable.getItems()[i].getBindingContext().getPath());
+		// 		console.log(oProperty)
+		// 		const d = new Date();
+		// 		let ms = d.valueOf();
+		// 		console.log(ms)
+		// 		// }, 1000)
+		// 	}
+
+		// 	var oHeaderbar = oTable.getAggregation("headerToolbar");
+		// 	if (oHeaderbar && oHeaderbar.getAggregation("content")[1]) {
+		// 		var oTitle = oHeaderbar.getAggregation("content")[1];
+
+		// 		if (oTable.getBinding("items") && oTable.getBinding("items").isLengthFinal()) {
+		// 			oTitle.setText("(" + oTable.getBinding("items").getLength() + ")");
+		// 		} else {
+		// 			oTitle.setText("(0)");
+		// 		}
+		// 	}
+		// 	var oModel = this.getView().getModel(); //model which is bound to the table
+
+		// 	// oModel = this.getOwnerComponent().getModel() 
+		// 	console.log(oModel)
+		// 	// oModel = oTable.getModel(); //if the model is bound directly to the table
+		// 	// console.log(oModel)
+		// 	var aData = oModel.getProperty(sPath);//array of rows
+		// 	console.log(aData)
+		// 	// var rowCount = aData.length;
+		// 	// var currentRowContext;
+		// 	// for (var i = 0; i < rowCount; i++) {
+		// 	// 	currentRowContext = aData[i];
+		// 	// 	console.log(currentRowContext)
+		// 	// }
+		// },
+	
 		onNavigateSupplier: function (supplierId) {
 			var projectId = this.getView().getModel('projectInfo').getProperty('/Spid')
 			console.log(projectId, supplierId)
@@ -331,4 +370,3 @@ sap.ui.define([
 		},
 	});
 });
-

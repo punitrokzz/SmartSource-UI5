@@ -32,29 +32,29 @@ sap.ui.define([
 
 			this.getData(supplierId);
 
-			var testURL = this
-				.getView()
-				.getModel("Settings")
-				.getProperty("/oTestUrl");
-			console.log("testURL", testURL)
-			var oTestModel = new sap.ui.model.odata.v2.ODataModel(testURL);
-			this.getView().setModel(oTestModel);
+			// var testURL = this
+			// 	.getView()
+			// 	.getModel("Settings")
+			// 	.getProperty("/oTestUrl");
+			// console.log("testURL", testURL)
+			// var oTestModel = new sap.ui.model.odata.v2.ODataModel(testURL);
+			// this.getView().setModel(oTestModel);
 
-			var that = this;
-		
-			oTestModel.read(`/ProjectSet('${projectId}')`, {
-				success: (oData) => {
-					console.log(oData)
-					var oJson = new sap.ui.model.json.JSONModel(oData);
-					// var oJson = new sap.ui.model.json.JSONModel({});
-					that.getView().setModel(oJson, 'projectInfo');
-				},
-				error: (oError) => {
-					console.log(oError);
-				},
-			});
+			// var that = this;
 
-			
+			// oTestModel.read(`/ProjectSet('${projectId}')`, {
+			// 	success: (oData) => {
+			// 		console.log(oData)
+			// 		var oJson = new sap.ui.model.json.JSONModel(oData);
+			// 		// var oJson = new sap.ui.model.json.JSONModel({});
+			// 		that.getView().setModel(oJson, 'projectInfo');
+			// 	},
+			// 	error: (oError) => {
+			// 		console.log(oError);
+			// 	},
+			// });
+
+
 			var that = this;
 			var serviceURL = that.getServiceURL();
 			var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
@@ -74,10 +74,22 @@ sap.ui.define([
 				},
 			});
 
+			oModel.read(`/SourcingProjectSet('${projectId}')`, {
+				success: (oData) => {
+					console.log("project", oData)
+					var oJson = new sap.ui.model.json.JSONModel(oData);
+					// var oJson = new sap.ui.model.json.JSONModel({});
+					that.getView().setModel(oJson, 'projectInfo');
+				},
+				error: (oError) => {
+					console.log(oError);
+				},
+			});
+
 		},
 
 		getData(supplierId) {
-			console.log( this.getView().getBindingContext())
+			console.log(this.getView().getBindingContext())
 			var that = this;
 			if (supplierId) {
 				var oSettingsModel = new sap.ui.model.json.JSONModel();
@@ -137,9 +149,18 @@ sap.ui.define([
 				});
 			}
 		},
-
+		onNavigateProject: function () {
+			var projectId = this.getView().getModel('projectInfo').getProperty('/Spid')
+			console.log(projectId)
+			this.getRouter().navTo("projectDetail", { projectId });
+		},
+		onNavigateItem: function (itemId) {
+			var projectId = this.getView().getModel('projectInfo').getProperty('/Spid')
+			console.log(projectId, itemId)
+			this.getRouter().navTo("item", { projectId, itemId });
+		},
 		onOverflowToolbarPress: function () {
-			console.log( this.getView().getBindingContext())
+			console.log(this.getView().getBindingContext())
 			var oPanel = this.byId("expandablePanel");
 			oPanel.setExpanded(!oPanel.getExpanded());
 		},

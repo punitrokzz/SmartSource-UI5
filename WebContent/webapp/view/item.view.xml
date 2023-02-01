@@ -91,7 +91,7 @@
                                             <Title textAlign="Begin" text="Quotation History" />
                                             <ToolbarSpacer />
                                             <!-- <Button text="Test" press="onPress" /> -->
-                                            <Button text="Update Quotation" press="onUpdate" type="Emphasized" />
+                                            <Button text="Update Quotation" press="onPress" type="Emphasized" />
                                         </content>
                                     </OverflowToolbar>
                                 </headerToolbar>

@@ -1,4 +1,4 @@
-<mvc:View controllerName="smartsourceapp.controller.supplier" xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:microchart="sap.suite.ui.microchart" xmlns:chart="sap.chart" xmlns:data="sap.chart.data">
+<mvc:View controllerName="smartsourceapp.controller.supplier" xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:microchart="sap.suite.ui.microchart" xmlns:chart="sap.chart" xmlns:data="sap.chart.data" >
     <uxap:ObjectPageLayout showTitleInHeaderContent="false" showHeaderContent="true" showEditHeaderButton="false" showFooter="false" useIconTabBar="true" class="sapUiSizeCompact">
         <uxap:headerTitle>
             <uxap:ObjectPageHeader objectTitle="{ path: 'Name1', formatter:'.formatter.textFormatter' }" objectSubtitle="{Snr}" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="true" isObjectSubtitleAlwaysVisible="true" showPlaceholder="false">
@@ -16,7 +16,8 @@
                 <uxap:breadcrumbs>
                     <Breadcrumbs currentLocationText="{ path: 'Name1', formatter:'.formatter.textFormatter' }">
                         <Link text="Home" press="onNavHome" />
-                        <Link text="{ path: 'projectInfo>/Name', formatter:'.formatter.textFormatter' }" press="onNavBack" />
+                        <!-- <Link text="{ path: 'projectInfo>/Spid', formatter:'.formatter.textFormatter' }" press="onNavBack" /> -->
+                        <Link text="Project {projectInfo>/Spid}" press="onNavigateProject" />
                     </Breadcrumbs>
                 </uxap:breadcrumbs>
             </uxap:ObjectPageHeader>
@@ -159,7 +160,7 @@
                                     </Column>
                                 </columns>
                                 <items>
-                                    <ColumnListItem type="Active" press="onNavigateSupplier(${Matnr})">
+                                    <ColumnListItem type="Active" press="onNavigateItem(${items>Matnr})">
                                         <cells>
                                             <ObjectIdentifier title="{items>Matnr}" text="" />
                                             <!-- <Text text="{ path: 'supp>Name1', formatter:'.formatter.textFormatter' }" width="auto" /> -->
@@ -168,7 +169,6 @@
                                     </ColumnListItem>
                                 </items>
                             </Table>
-                        
                         </uxap:blocks>
                     </uxap:ObjectPageSubSection>
                 </uxap:subSections>

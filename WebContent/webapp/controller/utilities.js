@@ -26,7 +26,7 @@ sap.ui.define([
 				}
 				return words.join(" ");
 			} catch {
-				return 'News Title';
+				return '';
 			}
 		}
 	}

@@ -20,10 +20,16 @@ sap.ui.define([
 						let news = [];
 						const suppliers = oData.results;
 						suppliers.forEach(({ Name1, Snews }) => {
-							let snews = JSON.parse(Snews);
-							snews.supplier = Name1
-							snews.highlight = snews.highlight.replace(/<\/?b>/g, "");
-							news.push(snews)
+							Snews = JSON.parse(Snews);
+							console.log(Snews)
+							if (Array.isArray(Snews) && Snews.length) {
+								Snews.forEach(newsItem => {
+									newsItem.supplier = Name1
+									newsItem.sentiment = newsItem['News Sentiment']
+									// newsItem.highlight = Snews.highlight.replace(/<\/?b>/g, "");
+									news.push(newsItem)
+								})
+							}
 						});
 						var oJson = new sap.ui.model.json.JSONModel(news);
 						that.getView().setModel(oJson, 'news');
@@ -49,32 +55,32 @@ sap.ui.define([
 				// 		console.log(oError);
 				// 	},
 				// });
-			// var newURL = that
-			// 		.getView()
-			// 		.getModel("Settings")
-			// 		.getProperty("/oNewUrl");
-			// 	console.log(newURL)
+				// var newURL = that
+				// 		.getView()
+				// 		.getModel("Settings")
+				// 		.getProperty("/oNewUrl");
+				// 	console.log(newURL)
 
-			// 	var oNewModel = new sap.ui.model.odata.v2.ODataModel(newURL);
-			// 	oNewModel.read('/QuotationSet', {
-			// 		success: (oData) => {
-			// 			console.log(oData)
-			// 		},
-			// 		error: (oError) => {
-			// 			console.log(oError);
-			// 		},
-			// 	});
-			// 	oNewModel.read('/MaterialSet', {
-			// 		success: (oData) => {
-			// 			console.log(oData)
-			// 		},
-			// 		error: (oError) => {
-			// 			console.log(oError);
-			// 		},
-			// 	});
+				// 	var oNewModel = new sap.ui.model.odata.v2.ODataModel(newURL);
+				// 	oNewModel.read('/QuotationSet', {
+				// 		success: (oData) => {
+				// 			console.log(oData)
+				// 		},
+				// 		error: (oError) => {
+				// 			console.log(oError);
+				// 		},
+				// 	});
+				// 	oNewModel.read('/MaterialSet', {
+				// 		success: (oData) => {
+				// 			console.log(oData)
+				// 		},
+				// 		error: (oError) => {
+				// 			console.log(oError);
+				// 		},
+				// 	});
 			});
 		},
-	
+
 		onNavigate: function (projectId) {
 			this.getRouter().navTo("projectDetail", { projectId });
 		},
