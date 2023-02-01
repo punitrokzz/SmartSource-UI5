@@ -1,5 +1,5 @@
 sap.ui.define([
-	"smartsourceapp/controller/BaseController",
+	"./BaseController",
 	"./simulationDialog",
 
 ], function (Controller, Dialog) {

@@ -1,9 +1,8 @@
 sap.ui.define([
 	"sap/ui/base/ManagedObject",
 	"sap/m/MessageBox",
-	"./utilities",
 	"sap/ui/core/routing/History"
-], function (ManagedObject, MessageBox, Utilities, History) {
+], function (ManagedObject, MessageBox, History) {
 
 	return ManagedObject.extend("smartsourceapp.controller.Dialog", {
 

@@ -1,5 +1,5 @@
 sap.ui.define([
-	"smartsourceapp/controller/BaseController",
+	"./BaseController",
 	"./news",
 ], function (Controller, News) {
 	"use strict";
