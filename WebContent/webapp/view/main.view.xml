@@ -42,16 +42,16 @@
 
                                     <VBox class="sapUiSmallMargin">
                                         <FlexBox alignItems="Start" justifyContent="SpaceBetween">
-                                            <Label text="{ path: 'news>newsurl', formatter:'.utilities.getHostname' }" design="Bold" />
+                                            <Label text="{news>hostname}" design="Bold" />
                                             <!-- <Label text="05/01/2023" /> -->
                                         </FlexBox>
                                         <Title level="H6" titleStyle="H5">
-                                            <Link text="{ path: 'news>newsurl', formatter:'.utilities.getTitle' }" target="_blank" href="{news>newsurl}" emphasized="true" wrapping="true" />
+                                            <Link text="{news>title}" target="_blank" href="{news>newsurl}" emphasized="true" wrapping="true" />
                                         </Title>
                                         <Text text="{news>highlight}" width="auto" maxLines="6" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true" />
                                         <HBox class="sapUiTinyMarginTop">
                                             <Label text="Related Supplier:" class="sapUiTinyMarginEnd" />
-                                            <tnt:InfoLabel text="{news>supplier}" colorScheme="1" displayOnly="true" />
+                                            <tnt:InfoLabel text="{news>supplierName}" colorScheme="1" displayOnly="true" />
                                             <Label text="Sentiment:" wrapping="true" class="sapUiSmallMarginBegin sapUiTinyMarginEnd" />
                                             <ObjectStatus visible="{=!${news>sentiment}}" text="Unknown" inverted="true" state="None" />
                                             <ObjectStatus visible="{=${news>sentiment}==='Negative'}" text="Negative" inverted="true" state="Indication01" />

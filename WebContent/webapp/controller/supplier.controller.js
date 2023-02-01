@@ -1,8 +1,8 @@
 sap.ui.define([
 	"smartsourceapp/controller/BaseController",
 	"./simulationDialog",
-
-], function (Controller, Dialog) {
+	"./news",
+], function (Controller, Dialog, News) {
 	"use strict";
 
 	return Controller.extend("smartsourceapp.controller.main", {
@@ -114,15 +114,12 @@ sap.ui.define([
 
 							that.getView().setModel(oJson, 'supplierInfo');
 
-							let news = [];
-							// suppliers.forEach(({ Name1, Snews }) => {
-							let snews = JSON.parse(oData['Snews']);
-							// console.log(snews)
-							snews.supplier = oData.Name1
-							snews.highlight = snews.highlight.replace(/<\/?b>/g, "");
-							news.push(snews)
+							let news = News.getSupplierNews(oData);
+							// let snews = JSON.parse(oData['Snews']);
+							// snews.supplier = oData.Name1
+							// snews.highlight = snews.highlight.replace(/<\/?b>/g, "");
+							// news.push(snews)
 
-							// });
 							var oJson = new sap.ui.model.json.JSONModel(news);
 							// var oJson = new sap.ui.model.json.JSONModel({});
 

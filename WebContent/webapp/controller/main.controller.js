@@ -1,6 +1,7 @@
 sap.ui.define([
-	"smartsourceapp/controller/BaseController"
-], function (Controller) {
+	"smartsourceapp/controller/BaseController",
+	"./news",
+], function (Controller, News) {
 	"use strict";
 
 	return Controller.extend("smartsourceapp.controller.main", {
@@ -19,18 +20,27 @@ sap.ui.define([
 					success: (oData) => {
 						let news = [];
 						const suppliers = oData.results;
-						suppliers.forEach(({ Name1, Snews }) => {
-							Snews = JSON.parse(Snews);
-							console.log(Snews)
-							if (Array.isArray(Snews) && Snews.length) {
-								Snews.forEach(newsItem => {
-									newsItem.supplier = Name1
-									newsItem.sentiment = newsItem['News Sentiment']
-									// newsItem.highlight = Snews.highlight.replace(/<\/?b>/g, "");
-									news.push(newsItem)
-								})
-							}
-						});
+						// suppliers.forEach(({ Name1, Snews }) => {
+						// 	Snews = JSON.parse(Snews);
+						// 	console.log(Snews)
+						// 	if (Array.isArray(Snews) && Snews.length) {
+						// 		Snews.forEach(item => {
+						// 			// console.log((item.newsurl))
+						// 			// console.log(News.getTitle(item.newsurl))
+						// 			// console.log(News.getHostname(item.newsurl))
+						// 			let newsItem = { supplierName: Name1, ...item }
+						// 			newsItem.title = News.getTitle(item.newsurl)
+						// 			newsItem.hostname = News.getHostname(item.newsurl)
+						// 			newsItem.sentiment = item['News Sentiment']
+						// 			// newsItem.highlight = item.highlight
+						// 			// newsItem.highlight = Snews.highlight.replace(/<\/?b>/g, "");
+						// 			news.push(newsItem)
+						// 		})
+						// 	}
+						// });
+						suppliers.forEach(supplier => {
+							News.getSupplierNews(supplier).forEach (item => news.push(item))
+						})
 						var oJson = new sap.ui.model.json.JSONModel(news);
 						that.getView().setModel(oJson, 'news');
 					},

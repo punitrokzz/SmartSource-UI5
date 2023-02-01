@@ -2,17 +2,13 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/core/routing/History",
 	"./formatter",
-	"./utilities",
 
-], function (Controller, History, formatter, utilities) {
+], function (Controller, History, formatter) {
 	"use strict";
 
 	return Controller.extend("smartsourceapp.controller.BaseController", {
 
 		formatter,
-
-		utilities,
-
 		getRouter: function () {
 			return sap.ui.core.UIComponent.getRouterFor(this);
 		},

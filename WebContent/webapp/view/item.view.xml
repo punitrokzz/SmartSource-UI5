@@ -16,7 +16,7 @@
                 <uxap:breadcrumbs>
                     <Breadcrumbs currentLocationText="{ path: 'Name1', formatter:'.formatter.textFormatter' }">
                         <Link text="Home" press="onNavHome" />
-                        <!-- <Link text="{ path: 'projectInfo>/Name', formatter:'.formatter.textFormatter' }" press="onNavBack" /> -->
+                        <Link text="{ path: 'projectInfo>/Spid', formatter:'.formatter.textFormatter' }" press="onNavBack" />
                     </Breadcrumbs>
                 </uxap:breadcrumbs>
             </uxap:ObjectPageHeader>
