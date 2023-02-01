@@ -14,7 +14,7 @@
                     </Bar>
                 </uxap:navigationBar>
                 <uxap:breadcrumbs>
-                    <Breadcrumbs currentLocationText="{ path: 'projectInfo>/Name', formatter:'.formatter.textFormatter' }">
+                    <Breadcrumbs currentLocationText="{ path: 'projectInfo>/Name', formatter:'.formatter.textFormat' }">
                         <Link text="Home" press="onNavHome" />
                     </Breadcrumbs>
                 </uxap:breadcrumbs>
@@ -24,7 +24,7 @@
             <VBox>
                 <HBox>
                     <Label text="Submission Deadline:" class="sapUiTinyMarginEnd" />
-                    <Text text="{ path: 'Smd', formatter:'.formatter.dateFormatter' }" />
+                    <Text text="{ path: 'Smd', formatter:'.formatter.dateFormat' }" />
                 </HBox>
                 <HBox>
                     <Label text="Total Target Amount:" class="sapUiTinyMarginEnd" />
@@ -76,11 +76,11 @@
                                         <Title text="Basic Data" />
                                         <HBox class="sapUiTinyMarginTop">
                                             <Label text="Material Group:" class="sapUiTinyMarginEnd" vAlign="Middle" />
-                                            <Text text="{ path: 'Matkl', formatter:'.formatter.textFormatter' }" />
+                                            <Text text="{ path: 'Matkl', formatter:'.formatter.textFormat' }" />
                                         </HBox>
                                         <HBox class="sapUiTinyMarginTop">
                                             <Label text="Submission Deadline:" class="sapUiTinyMarginEnd" vAlign="Middle" />
-                                            <Text text="{ path: 'Pbdt', formatter:'.formatter.dateFormatter' }" />
+                                            <Text text="{ path: 'Pbdt', formatter:'.formatter.dateFormat' }" />
                                         </HBox>
                                         <HBox class="sapUiTinyMarginTop">
                                             <Label text="Document Currency:" class="sapUiTinyMarginEnd" vAlign="Middle" />
@@ -113,7 +113,7 @@
                                         <Title text="Contact Details" />
                                         <HBox class="sapUiTinyMarginTop">
                                             <Label text="Purchaser Responsible:" class="sapUiTinyMarginEnd" vAlign="Middle" />
-                                            <Text text="{ path: 'Prr', formatter:'.formatter.textFormatter' }" />
+                                            <Text text="{ path: 'Prr', formatter:'.formatter.textFormat' }" />
                                         </HBox>
                                     </VBox>
                                 </l:Grid>
@@ -196,7 +196,7 @@
                                     <ColumnListItem type="Navigation" press="onNavigateSupplier(${Snr})">
                                         <cells>
                                             <ObjectIdentifier title="{Snr}" text="" />
-                                            <Text text="{ path: 'Name1', formatter:'.formatter.textFormatter' }" width="auto" />
+                                            <Text text="{ path: 'Name1', formatter:'.formatter.textFormat' }" width="auto" />
                                         </cells>
                                     </ColumnListItem>
                                 </items>

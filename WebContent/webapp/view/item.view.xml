@@ -1,7 +1,7 @@
 <mvc:View controllerName="smartsourceapp.controller.item" xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:microchart="sap.suite.ui.microchart" xmlns:chart="sap.chart" xmlns:data="sap.chart.data">
     <uxap:ObjectPageLayout showTitleInHeaderContent="false" showHeaderContent="true" showEditHeaderButton="false" showFooter="false" class="sapUiSizeCompact">
         <uxap:headerTitle>
-            <uxap:ObjectPageHeader objectTitle="{path: 'Matname', formatter:'.formatter.textFormatter' }" objectSubtitle="{Matnr}" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="true" isObjectSubtitleAlwaysVisible="true" showPlaceholder="false">
+            <uxap:ObjectPageHeader objectTitle="{path: 'Matname', formatter:'.formatter.textFormat' }" objectSubtitle="{Matnr}" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="true" isObjectSubtitleAlwaysVisible="true" showPlaceholder="false">
                 <uxap:navigationBar>
                     <Bar>
                         <contentLeft>
@@ -14,21 +14,21 @@
                     </Bar>
                 </uxap:navigationBar>
                 <uxap:breadcrumbs>
-                    <Breadcrumbs currentLocationText="{ path: 'Name1', formatter:'.formatter.textFormatter' }">
+                    <Breadcrumbs currentLocationText="{ path: 'Name1', formatter:'.formatter.textFormat' }">
                         <Link text="Home" press="onNavHome" />
-                        <Link text="{ path: 'projectInfo>/Spid', formatter:'.formatter.textFormatter' }" press="onNavBack" />
+                        <Link text="{ path: 'projectInfo>/Spid', formatter:'.formatter.textFormat' }" press="onNavBack" />
                     </Breadcrumbs>
                 </uxap:breadcrumbs>
             </uxap:ObjectPageHeader>
         </uxap:headerTitle>
         <uxap:headerContent>
             <!-- <VBox>
-                <ObjectAttribute title="Material Type" text="{ path: 'materialInfo>/Mtart', formatter:'.formatter.textFormatter' }" />
-                <ObjectAttribute title="Material Group" text="{ path: 'materialInfo>/Matkl', formatter:'.formatter.textFormatter' }" />
+                <ObjectAttribute title="Material Type" text="{ path: 'materialInfo>/Mtart', formatter:'.formatter.textFormat' }" />
+                <ObjectAttribute title="Material Group" text="{ path: 'materialInfo>/Matkl', formatter:'.formatter.textFormat' }" />
             </VBox> -->
             <VBox>
-                <ObjectAttribute title="Material Type" text="{ path: 'Mtart', formatter:'.formatter.textFormatter' }" />
-                <ObjectAttribute title="Material Group" text="{ path: 'Matkl', formatter:'.formatter.textFormatter' }" />
+                <ObjectAttribute title="Material Type" text="{ path: 'Mtart', formatter:'.formatter.textFormat' }" />
+                <ObjectAttribute title="Material Group" text="{ path: 'Matkl', formatter:'.formatter.textFormat' }" />
             </VBox>
         </uxap:headerContent>
 
@@ -70,7 +70,7 @@
                                     <ColumnListItem type="Active" press="onNavigateSupplier(${supp>Snr})">
                                         <cells>
                                             <ObjectIdentifier title="{supp>Snr}" text="" />
-                                            <Text text="{ path: 'supp>Name1', formatter:'.formatter.textFormatter' }" width="auto" />
+                                            <Text text="{ path: 'supp>Name1', formatter:'.formatter.textFormat' }" width="auto" />
                                             <Text text="" width="auto" />
                                         </cells>
                                     </ColumnListItem>
@@ -119,7 +119,7 @@
                                             <Text text="{Rnr}" />
                                             <Text text="{Ofp}" />
                                             <!-- <ObjectIdentifier title="{Snr}" text="" /> -->
-                                            <!-- <Text text="{ path: 'Name1', formatter:'.formatter.textFormatter' }" width="auto" /> -->
+                                            <!-- <Text text="{ path: 'Name1', formatter:'.formatter.textFormat' }" width="auto" /> -->
                                         </cells>
                                     </ColumnListItem>
                                 </items>

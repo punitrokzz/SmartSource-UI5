@@ -7,7 +7,7 @@ xmlns:mvc="sap.ui.core.mvc"
  xmlns:core="sap.ui.core">
     <uxap:ObjectPageLayout showTitleInHeaderContent="false" showHeaderContent="true" showEditHeaderButton="false" showFooter="false" useIconTabBar="true" class="sapUiSizeCompact">
         <uxap:headerTitle>
-            <uxap:ObjectPageHeader objectTitle="{ path: 'Name1', formatter:'.formatter.textFormatter' }" objectSubtitle="{Snr}" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="true" isObjectSubtitleAlwaysVisible="true" showPlaceholder="false">
+            <uxap:ObjectPageHeader objectTitle="{ path: 'Name1', formatter:'.formatter.textFormat' }" objectSubtitle="{Snr}" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="true" isObjectSubtitleAlwaysVisible="true" showPlaceholder="false">
                 <uxap:navigationBar>
                     <Bar>
                         <contentLeft>
@@ -20,9 +20,9 @@ xmlns:mvc="sap.ui.core.mvc"
                     </Bar>
                 </uxap:navigationBar>
                 <uxap:breadcrumbs>
-                    <Breadcrumbs currentLocationText="{ path: 'Name1', formatter:'.formatter.textFormatter' }">
+                    <Breadcrumbs currentLocationText="{ path: 'Name1', formatter:'.formatter.textFormat' }">
                         <Link text="Home" press="onNavHome" />
-                        <!-- <Link text="{ path: 'projectInfo>/Spid', formatter:'.formatter.textFormatter' }" press="onNavBack" /> -->
+                        <!-- <Link text="{ path: 'projectInfo>/Spid', formatter:'.formatter.textFormat' }" press="onNavBack" /> -->
                         <Link text="Project {projectInfo>/Spid}" press="onNavigateProject" />
                     </Breadcrumbs>
                 </uxap:breadcrumbs>
@@ -33,11 +33,11 @@ xmlns:mvc="sap.ui.core.mvc"
                 <Title text="Supplier Info" />
                 <HBox>
                     <Label text="Country:" class="sapUiTinyMarginEnd" />
-                    <Text text="{ path: 'Land1', formatter:'.formatter.textFormatter' }" />
+                    <Text text="{ path: 'Land1', formatter:'.formatter.textFormat' }" />
                 </HBox>
                 <HBox>
                     <Label text="Ort:" class="sapUiTinyMarginEnd" />
-                    <Text text="{ path: 'Ort1', formatter:'.formatter.textFormatter' }" />
+                    <Text text="{ path: 'Ort1', formatter:'.formatter.textFormat' }" />
                 </HBox>
             </VBox>
             <VBox>
@@ -192,7 +192,7 @@ xmlns:mvc="sap.ui.core.mvc"
                                     <ColumnListItem type="Active" press="onNavigateItem(${items>Matnr})">
                                         <cells>
                                             <ObjectIdentifier title="{items>Matnr}" text="" />
-                                            <!-- <Text text="{ path: 'supp>Name1', formatter:'.formatter.textFormatter' }" width="auto" /> -->
+                                            <!-- <Text text="{ path: 'supp>Name1', formatter:'.formatter.textFormat' }" width="auto" /> -->
                                             <Text text="" width="auto" />
                                         </cells>
                                     </ColumnListItem>
