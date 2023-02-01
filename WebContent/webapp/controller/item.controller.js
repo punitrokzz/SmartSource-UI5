@@ -94,6 +94,7 @@ sap.ui.define([
 		onPress: async function () {
 			// this.getView().getModel('supp')
 			console.log(this.getView().getModel('supp'))
+			console.log(this.getView().getModel('supp').getData())
 
 			var Spid = this.getView().getModel('projectInfo').getProperty('/Spid')
 			var Matnr = this.getView().getModel('materialInfo').getProperty('/Matnr')

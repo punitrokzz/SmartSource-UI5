@@ -30,6 +30,7 @@
                 <ObjectAttribute title="Material Type" text="{ path: 'Mtart', formatter:'.formatter.textFormat' }" />
                 <ObjectAttribute title="Material Group" text="{ path: 'Matkl', formatter:'.formatter.textFormat' }" />
             </VBox>
+            
         </uxap:headerContent>
 
         <uxap:sections>
@@ -111,6 +112,11 @@
                                             <Text text="Offered Price" width="auto" />
                                         </header>
                                     </Column>
+                                    <Column width="auto" minScreenWidth="Phone">
+                                        <header>
+                                            <Text text="Optimal Price" width="auto" />
+                                        </header>
+                                    </Column>
                                 </columns>
                                 <items>
                                     <ColumnListItem>
@@ -118,6 +124,7 @@
                                             <Text text="{Qaid}" />
                                             <Text text="{Rnr}" />
                                             <Text text="{Ofp}" />
+                                            <Text text="{Smp}" />
                                             <!-- <ObjectIdentifier title="{Snr}" text="" /> -->
                                             <!-- <Text text="{ path: 'Name1', formatter:'.formatter.textFormat' }" width="auto" /> -->
                                         </cells>

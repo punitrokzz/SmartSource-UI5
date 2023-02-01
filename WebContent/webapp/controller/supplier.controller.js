@@ -119,12 +119,19 @@ sap.ui.define([
 							// snews.supplier = oData.Name1
 							// snews.highlight = snews.highlight.replace(/<\/?b>/g, "");
 							// news.push(snews)
-
+							that.news = news
 							var oJson = new sap.ui.model.json.JSONModel(news);
 							// var oJson = new sap.ui.model.json.JSONModel({});
 
-							that.getView().setModel(oJson, 'news');
 
+							that.getView().setModel(oJson, 'news');
+							var oNews = new sap.ui.model.json.JSONModel({
+								"SelectedSentiment": "All",
+								"News": news,
+								"FilteredResults": news,
+							});
+							// that.getView().setModel(oJson, 'news');
+							that.getView().setModel(oNews, 'oNews');
 						},
 						error: (oError) => {
 							console.log(oError);
@@ -156,30 +163,16 @@ sap.ui.define([
 			console.log(projectId, itemId)
 			this.getRouter().navTo("item", { projectId, itemId });
 		},
-		onOverflowToolbarPress: function () {
-			console.log(this.getView().getBindingContext())
-			var oPanel = this.byId("expandablePanel");
-			oPanel.setExpanded(!oPanel.getExpanded());
-		},
-		_onButtonPress: function (oEvent) {
 
-			var sDialogName = "simulationDialog";
-			this.mDialogs = this.mDialogs || {};
-			// var oDialog = this.mDialogs[sDialogName];
-			// console.log("this.mDialogs", this.mDialogs, oDialog)
-			// if (!oDialog) {
-			// 	oDialog = new Dialog(this.getView());
-			// 	this.mDialogs[sDialogName] = oDialog;
-			// 	// For navigation.
-			// 	oDialog.setRouter(this.oRouter);
-			// }
-			var oDialog = new Dialog(this.getView());
-			// console.log("this.mDialogs", this.mDialogs, oDialog)
-			var context = oEvent.getSource().getBindingContext();
-			console.log("context", context)
-			oDialog._oControl.setBindingContext(context);
-			oDialog.open();
+		onNewsFilter: function () {
+			var oModel = this.getView().getModel('oNews')
+			var selectedSentiment = oModel.getProperty("/SelectedSentiment")
+			var news = oModel.getProperty("/News")
+			var results = selectedSentiment === 'All' ? news : news.filter(({ sentiment }) => sentiment === selectedSentiment);
+			oModel.setProperty("/FilteredResults", results);
 		},
+
+
 
 	});
 

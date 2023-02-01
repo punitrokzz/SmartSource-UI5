@@ -25,7 +25,7 @@
                                 <!-- <Title textAlign="Begin" text="Items" />
                                     <Title text="(1)" /> -->
                                 <ToolbarSpacer />
-                                <Label text="Choose a supplier:" for="airlines" />
+                                <Label text="Choose a supplier:" />
                                 <ComboBox width="260px" showClearIcon="true" items="{/SupplierDataSet}" change="handleChange">
                                     <core:Item key="{Snr}" text="{Name1}" />
                                 </ComboBox>
