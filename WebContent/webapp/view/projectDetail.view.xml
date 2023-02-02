@@ -1,7 +1,7 @@
 <mvc:View controllerName="smartsourceapp.controller.projectDetail" xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:microchart="sap.suite.ui.microchart">
     <uxap:ObjectPageLayout showTitleInHeaderContent="false" showHeaderContent="true" showEditHeaderButton="false" showFooter="false" class="sapUiSizeCompact">
         <uxap:headerTitle>
-            <uxap:ObjectPageHeader objectTitle="{ path: 'Spid' }" objectSubtitle="{projectInfo>/Id}" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="true" isObjectSubtitleAlwaysVisible="true" showPlaceholder="false">
+            <uxap:ObjectPageHeader objectTitle="{ path: 'Spid' }" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="true" isObjectSubtitleAlwaysVisible="true" showPlaceholder="false">
                 <uxap:navigationBar>
                     <Bar>
                         <contentLeft>
@@ -14,7 +14,7 @@
                     </Bar>
                 </uxap:navigationBar>
                 <uxap:breadcrumbs>
-                    <Breadcrumbs currentLocationText="{ path: 'projectInfo>/Name', formatter:'.formatter.textFormat' }">
+                    <Breadcrumbs currentLocationText="Project {Spid}">
                         <Link text="Home" press="onNavHome" />
                     </Breadcrumbs>
                 </uxap:breadcrumbs>
@@ -43,7 +43,7 @@
                                         <Title text="Basic Data" />
                                         <HBox class="sapUiTinyMarginTop">
                                             <Label text="Material Group:" class="sapUiTinyMarginEnd" vAlign="Middle" />
-                                            <Text text="{ path: 'Matkl', formatter:'.formatter.textFormat' }" />
+                                            <Text text="{ path: 'Matkl' }" />
                                         </HBox>
                                         <HBox class="sapUiTinyMarginTop">
                                             <Label text="Submission Deadline:" class="sapUiTinyMarginEnd" vAlign="Middle" />

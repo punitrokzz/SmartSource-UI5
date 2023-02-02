@@ -66,7 +66,12 @@
                                 </Column>
                                 <Column width="auto" minScreenWidth="Tablet" demandPopin="true">
                                     <header>
-                                        <Text text="Name" width="auto" />
+                                        <Text text="Submission Deadline" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column width="auto" minScreenWidth="Tablet" demandPopin="true">
+                                    <header>
+                                        <Text text="Total Amount" width="auto" />
                                     </header>
                                 </Column>
                             </columns>
@@ -74,7 +79,8 @@
                                 <ColumnListItem type="Navigation" press="onNavigate(${Spid})">
                                     <cells>
                                         <ObjectIdentifier title="{Spid}" text="" />
-                                        <Text text="{Name}" width="auto" />
+                                        <Text text="{ path: 'Smd', formatter:'.formatter.dateFormat' }" />
+                                        <ObjectNumber number="{Tamt}" unit="{Dctcurr}" />
                                     </cells>
                                 </ColumnListItem>
                             </items>

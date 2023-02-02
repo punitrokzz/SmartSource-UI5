@@ -14,9 +14,9 @@
                     </Bar>
                 </uxap:navigationBar>
                 <uxap:breadcrumbs>
-                    <Breadcrumbs currentLocationText="{ path: 'Name1', formatter:'.formatter.textFormat' }">
+                    <Breadcrumbs currentLocationText="{ path: 'Matname', formatter:'.formatter.textFormat' }">
                         <Link text="Home" press="onNavHome" />
-                        <Link text="{ path: 'projectInfo>/Spid', formatter:'.formatter.textFormat' }" press="onNavBack" />
+                        <Link text="Project {projectInfo>/Spid}" press="onNavigateProject" />
                     </Breadcrumbs>
                 </uxap:breadcrumbs>
             </uxap:ObjectPageHeader>
@@ -25,21 +25,21 @@
             <VBox>
                 <HBox class="sapUiTinyMarginTop">
                     <Label text="Material Type:" class="sapUiTinyMarginEnd" vAlign="Middle" />
-                    <Text text="{ path: 'Mtart', formatter:'.formatter.textFormat' }" />
+                    <Text text="RAW MATERIAL" />
                 </HBox>
                 <HBox class="sapUiTinyMarginTop">
                     <Label text="Material Group:" class="sapUiTinyMarginEnd" vAlign="Middle" />
-                    <Text text="{ path: 'Matkl', formatter:'.formatter.textFormat' }" />
+                    <Text text="{ path: 'Matkl' }" />
                 </HBox>
             </VBox>
             <VBox>
                 <HBox class="sapUiTinyMarginTop">
                     <Label text="Purchase Order Unit of Measur:" class="sapUiTinyMarginEnd" vAlign="Middle" />
-                    <Text text="{ path: 'Bstme', formatter:'.formatter.textFormat' }" />
+                    <Text text="{ path: 'Bstme'}" />
                 </HBox>
                 <HBox class="sapUiTinyMarginTop">
                     <Label text="Purchasing Group:" class="sapUiTinyMarginEnd" vAlign="Middle" />
-                    <Text text="{ path: 'Ekgrp', formatter:'.formatter.textFormat' }" />
+                    <Text text="{ path: 'Ekgrp' }" />
                 </HBox>
             </VBox>
         </uxap:headerContent>

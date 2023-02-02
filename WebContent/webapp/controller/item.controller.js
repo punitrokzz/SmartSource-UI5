@@ -61,7 +61,6 @@ sap.ui.define([
 					"Matnr": `'${Matnr}'`,
 				},
 				success: (oData) => {
-					console.log(oData);
 					var oJson = new sap.ui.model.json.JSONModel(oData.results);
 					this.getView().setModel(oJson, 'suppliers');
 				},
@@ -81,7 +80,6 @@ sap.ui.define([
 					"Matnr": `'${Matnr}'`,
 				},
 				success: (oData) => {
-					console.log(oData);
 					that.filterMaterial(oModel, Spid, Matnr)
 				},
 				error: (oError) => {
@@ -93,7 +91,6 @@ sap.ui.define([
 
 		onNavigateSupplier: function (supplierId) {
 			var projectId = this.getView().getModel('projectInfo').getProperty('/Spid')
-			console.log(projectId, supplierId)
 			this.getRouter().navTo("supplier", { projectId, supplierId });
 		},
 	});
