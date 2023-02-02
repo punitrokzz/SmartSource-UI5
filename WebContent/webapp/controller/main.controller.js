@@ -1,6 +1,7 @@
 sap.ui.define([
-	"smartsourceapp/controller/BaseController"
-], function (Controller) {
+	"./BaseController",
+	"./news",
+], function (Controller, News) {
 	"use strict";
 
 	return Controller.extend("smartsourceapp.controller.main", {
@@ -16,19 +17,19 @@ sap.ui.define([
 				that.getView().setModel(oModel);
 				oModel.read('/SupplierInfoDataSet', {
 					success: (oData) => {
-						console.log(oData);
 						let news = [];
 						const suppliers = oData.results;
-						suppliers.forEach(({ Name1, Snews }) => {
-							let snews = JSON.parse(Snews);
-							console.log(snews)
-							snews.supplier = Name1
-							snews.highlight = snews.highlight.replace(/<\/?b>/g, "");
-							news.push(snews)
-
-						});
+						suppliers.forEach(supplier => {
+							News.getSupplierNews(supplier).forEach (item => news.push(item))
+						})
 						var oJson = new sap.ui.model.json.JSONModel(news);
 						that.getView().setModel(oJson, 'news');
+						var oNews = new sap.ui.model.json.JSONModel({
+							"SelectedSentiment": "All",
+							"News": news,
+							"FilteredResults": news,
+						});
+						that.getView().setModel(oNews, 'oNews');
 					},
 					error: (oError) => {
 						console.log(oError);
@@ -41,6 +42,13 @@ sap.ui.define([
 			this.getRouter().navTo("projectDetail", { projectId });
 		},
 
+		onNewsFilter: function () {
+			var oModel = this.getView().getModel('oNews')
+			var selectedSentiment = oModel.getProperty("/SelectedSentiment")
+			var news = oModel.getProperty("/News")
+			var results = selectedSentiment === 'All' ? news : news.filter(({ sentiment }) => sentiment === selectedSentiment);
+			oModel.setProperty("/FilteredResults", results);
+		},
 	});
 
 });

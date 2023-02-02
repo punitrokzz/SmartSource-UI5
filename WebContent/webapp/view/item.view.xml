@@ -1,0 +1,130 @@
+<mvc:View controllerName="smartsourceapp.controller.item" xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:viz="sap.viz.ui5.controls" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:viz.data="sap.viz.ui5.data">
+    <uxap:ObjectPageLayout showTitleInHeaderContent="false" showHeaderContent="true" showEditHeaderButton="false" showFooter="false" class="sapUiSizeCompact">
+        <uxap:headerTitle>
+            <uxap:ObjectPageHeader objectTitle="{path: 'Matname', formatter:'.formatter.textFormat' }" objectSubtitle="{Matnr}" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="true" isObjectSubtitleAlwaysVisible="true" showPlaceholder="false">
+                <uxap:navigationBar>
+                    <Bar>
+                        <contentLeft>
+                            <Button type="Back" press="onNavBack" />
+                        </contentLeft>
+                        <contentMiddle>
+                            <Title text="Smart Source" />
+                        </contentMiddle>
+                        <contentRight />
+                    </Bar>
+                </uxap:navigationBar>
+                <uxap:breadcrumbs>
+                    <Breadcrumbs currentLocationText="{ path: 'Matname', formatter:'.formatter.textFormat' }">
+                        <Link text="Home" press="onNavHome" />
+                        <Link text="Project {projectInfo>/Spid}" press="onNavigateProject" />
+                    </Breadcrumbs>
+                </uxap:breadcrumbs>
+            </uxap:ObjectPageHeader>
+        </uxap:headerTitle>
+        <uxap:headerContent>
+            <VBox>
+                <HBox class="sapUiTinyMarginTop">
+                    <Label text="Material Type:" class="sapUiTinyMarginEnd" vAlign="Middle" />
+                    <Text text="RAW MATERIAL" />
+                </HBox>
+                <HBox class="sapUiTinyMarginTop">
+                    <Label text="Material Group:" class="sapUiTinyMarginEnd" vAlign="Middle" />
+                    <Text text="{ path: 'Matkl' }" />
+                </HBox>
+            </VBox>
+            <VBox>
+                <HBox class="sapUiTinyMarginTop">
+                    <Label text="Purchase Order Unit of Measur:" class="sapUiTinyMarginEnd" vAlign="Middle" />
+                    <Text text="{ path: 'Bstme'}" />
+                </HBox>
+                <HBox class="sapUiTinyMarginTop">
+                    <Label text="Purchasing Group:" class="sapUiTinyMarginEnd" vAlign="Middle" />
+                    <Text text="{ path: 'Ekgrp' }" />
+                </HBox>
+            </VBox>
+        </uxap:headerContent>
+        <uxap:sections>
+            <uxap:ObjectPageSection title="Supplier List">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection title="Supplier List">
+                        <uxap:blocks>
+                            <Table items="{suppliers>/}" updateFinished="onTableUpdateFinished" width="100%" growing="true" growingScrollToLoad="true" growingThreshold="25" mode="None">
+                                <headerToolbar>
+                                    <OverflowToolbar design="Transparent">
+                                        <content>
+                                            <Title textAlign="Begin" text="Suppliers" />
+                                            <Title text="(1)" />
+                                            <ToolbarSpacer />
+                                            <Button text="Run Simulation" press="onSimulate" type="Emphasized" />
+                                        </content>
+                                    </OverflowToolbar>
+                                </headerToolbar>
+                                <columns>
+                                    <Column width="auto" minScreenWidth="Tablet" demandPopin="true">
+                                        <header>
+                                            <Text text="Supplier" width="auto" />
+                                        </header>
+                                    </Column>
+                                    <Column width="auto" minScreenWidth="Phone">
+                                        <header>
+                                            <Text text="Name" width="auto" />
+                                        </header>
+                                    </Column>
+                                    <Column width="auto" minScreenWidth="Phone">
+                                        <header>
+                                            <Text text="Offered Price" width="auto" />
+                                        </header>
+                                    </Column>
+                                    <Column width="auto" minScreenWidth="Phone">
+                                        <header>
+                                            <Text text="Optimal Price" width="auto" />
+                                        </header>
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem type="Active" press="onNavigateSupplier(${suppliers>Snr})">
+                                        <cells>
+                                            <ObjectIdentifier title="{suppliers>Snr}" text="" />
+                                            <Text text="{ path: 'suppliers>name1', formatter:'.formatter.textFormat' }" width="auto" />
+                                            <ObjectNumber number="{suppliers>Ofp}" unit="{projectInfo>/Dctcurr}" />
+                                            <ObjectNumber number="{suppliers>Smp}" unit="{projectInfo>/Dctcurr}" />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection title="">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection title="">
+                        <uxap:blocks>
+                            <HBox width="100%" visible="true" class="sapUiSizeCompact">
+                                <items>
+                                    <viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}" vizType='line' height='20rem'>
+                                        <viz:dataset>
+                                            <viz.data:FlattenedDataset data="{suppliers>/}">
+                                                <viz.data:dimensions>
+                                                    <viz.data:DimensionDefinition name="Suppliers" value="{suppliers>name1}" />
+                                                </viz.data:dimensions>
+                                                <viz.data:measures>
+                                                    <viz.data:MeasureDefinition name="Offered Price" value="{suppliers>Ofp}" />
+                                                    <viz.data:MeasureDefinition name="Optimal Price" value="{suppliers>Smp}" />
+                                                </viz.data:measures>
+                                            </viz.data:FlattenedDataset>
+                                        </viz:dataset>
+                                        <viz:feeds>
+                                            <viz.feeds:FeedItem id='valueAxisFeed' uid="valueAxis" type="Measure" values="Offered Price,Optimal Price" />
+                                            <viz.feeds:FeedItem id='categoryAxisFeed' uid="categoryAxis" type="Dimension" values="Suppliers" />
+                                        </viz:feeds>
+                                    </viz:VizFrame>
+                                </items>
+                            </HBox>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+        </uxap:sections>
+    </uxap:ObjectPageLayout>
+</mvc:View>

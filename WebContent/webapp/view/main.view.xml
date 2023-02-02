@@ -1,7 +1,4 @@
-<mvc:View controllerName="smartsourceapp.controller.main" 
-    xmlns:mvc="sap.ui.core.mvc" 
-    xmlns="sap.m"
-	xmlns:tnt="sap.tnt">
+<mvc:View controllerName="smartsourceapp.controller.main" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:core="sap.ui.core">
     <Page id="page" title="{i18n>title}">
         <customHeader>
             <Toolbar>
@@ -14,41 +11,45 @@
             <IconTabBar id="idIconTabBarNoIcons" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
                 <items>
                     <IconTabFilter text="SUPPLIERS NEWS" key="news">
-                        <List items="{news>/}">
+                        <Toolbar design="Transparent">
+                            <content>
+                                <ToolbarSpacer />
+                                <Label text="Filter Sentiment:" />
+                                <Select forceSelection="false" selectedKey="{oNews>/SelectedSentiment}" change="onNewsFilter" width="170px">
+                                    <core:Item key="All" text="All" />
+                                    <core:Item key="Positive" text="Positive" />
+                                    <core:Item key="Negative" text="Negative" />
+                                    <core:Item key="Neutral" text="Neutral" />
+                                </Select>
+                            </content>
+                        </Toolbar>
+                        <List items="{oNews>/FilteredResults}">
                             <CustomListItem>
-                            <HBox alignItems="Center">
-                                <!-- <Image src="https://toyota-cms-media.s3.amazonaws.com/wp-content/uploads/2022/11/Toyota-bZ-Compact-SUV-Concept_002-1-1500x844.jpg" width="15em" /> -->
-
-                                <VBox class="sapUiSmallMargin" >
-                                    <FlexBox alignItems="Start" justifyContent="SpaceBetween">
-                                        <Label text="{ path: 'news>newsurl', formatter:'.utilities.getHostname' }" design="Bold" />
-                                        <!-- <Label text="05/01/2023" /> -->
-                                    </FlexBox>
-                                    <Title level="H6" titleStyle="H5">
-                                        <Link text="{ path: 'news>newsurl', formatter:'.utilities.getTitle' }" 
-                                        target="_blank"
-                                         href="{news>newsurl}" emphasized="true" wrapping="true" />
-                                    </Title>
-                                    <Text
-                                        text="{news>highlight}"
-                                        width="auto"
-                                        maxLines="6"
-                                        wrapping="true"
-                                        textAlign="Begin"
-                                        textDirection="Inherit"
-                                        visible="true"
-                                    />
-                                    <HBox class="sapUiTinyMarginTop">
-                                        <Label text="Related Supplier:" class="sapUiTinyMarginEnd"/>
-                                        <tnt:InfoLabel text="{news>supplier}" colorScheme="6" />
-                                    </HBox>
-                                </VBox>
+                                <HBox alignItems="Center">
+                                    <VBox class="sapUiSmallMargin">
+                                        <FlexBox alignItems="Start" justifyContent="SpaceBetween">
+                                            <Label text="{oNews>hostname}" design="Bold" />
+                                        </FlexBox>
+                                        <Title level="H6" titleStyle="H5">
+                                            <Link text="{oNews>title}" target="_blank" href="{oNews>newsurl}" emphasized="true" wrapping="true" />
+                                        </Title>
+                                        <Text text="{oNews>highlight}" width="auto" maxLines="6" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <HBox class="sapUiTinyMarginTop">
+                                            <Label text="Related Supplier:" class="sapUiTinyMarginEnd" />
+                                            <tnt:InfoLabel text="{oNews>supplierName}" colorScheme="1" displayOnly="true" />
+                                            <Label text="Sentiment:" wrapping="true" class="sapUiSmallMarginBegin sapUiTinyMarginEnd" />
+                                            <ObjectStatus visible="{=!${oNews>sentiment}}" text="Unknown" inverted="true" state="None" />
+                                            <ObjectStatus visible="{=${oNews>sentiment}==='Negative'}" text="Negative" inverted="true" state="Indication01" />
+                                            <ObjectStatus visible="{=${oNews>sentiment}==='Positive'}" text="Positive" inverted="true" state="Success" />
+                                            <ObjectStatus visible="{=${oNews>sentiment}==='Neutral'}" text="Neutral" inverted="true" state="Information" />
+                                        </HBox>
+                                    </VBox>
                                 </HBox>
                             </CustomListItem>
                         </List>
                     </IconTabFilter>
                     <IconTabFilter text="SOURCING PROJECTS" key="projects">
-                        <Table width="100%" growing="true" growingScrollToLoad="true" growingThreshold="25" mode="None" itemPress="_onFioriListReportTableItemPress" updateFinished="_onFioriListReportTableUpdateFinished">
+                        <Table id="projectList" items="{/SourcingProjectSet}" width="100%" growing="true" growingScrollToLoad="true" growingThreshold="25" mode="None" itemPress="_onFioriListReportTableItemPress" updateFinished="onTableUpdateFinished">
                             <headerToolbar>
                                 <OverflowToolbar design="Transparent">
                                     <content>
@@ -65,15 +66,21 @@
                                 </Column>
                                 <Column width="auto" minScreenWidth="Tablet" demandPopin="true">
                                     <header>
-                                        <Text text="Name" width="auto" />
+                                        <Text text="Submission Deadline" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column width="auto" minScreenWidth="Tablet" demandPopin="true">
+                                    <header>
+                                        <Text text="Total Amount" width="auto" />
                                     </header>
                                 </Column>
                             </columns>
                             <items>
-                                <ColumnListItem type="Navigation" press="onNavigate('1000000108')">
+                                <ColumnListItem type="Navigation" press="onNavigate(${Spid})">
                                     <cells>
-                                        <ObjectIdentifier title="1000000108" text="" />
-                                        <Text text="Sample Sourcing Project" width="auto" />
+                                        <ObjectIdentifier title="{Spid}" text="" />
+                                        <Text text="{ path: 'Smd', formatter:'.formatter.dateFormat' }" />
+                                        <ObjectNumber number="{Tamt}" unit="{Dctcurr}" />
                                     </cells>
                                 </ColumnListItem>
                             </items>

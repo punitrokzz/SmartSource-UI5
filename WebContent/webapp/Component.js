@@ -40,7 +40,7 @@ sap.ui.define([
 					viewData: oViewData,
 				});
 			},
-			
+
 		});
 	}
 );
