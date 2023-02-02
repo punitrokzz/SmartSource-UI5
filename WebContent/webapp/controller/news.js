@@ -34,7 +34,6 @@ sap.ui.define([
 		getSupplierNews: function({ Name1, Snews }) {
 			var news = []
 			Snews = JSON.parse(Snews);
-			console.log(Snews)
 			var that = this;
 			if (Array.isArray(Snews) && Snews.length) {
 				Snews.forEach(item => {
@@ -48,6 +47,6 @@ sap.ui.define([
 			return news
 		}
 		
-		
+
 	}
 });

@@ -14,13 +14,10 @@ sap.ui.define([
 		},
 
 		onNavHome: function (oEvent) {
-			console.log("history length", history.length)
 			var oHistory, sPreviousHash;
-
 			oHistory = History.getInstance();
 			sPreviousHash = oHistory.getPreviousHash();
 			this.getRouter().navTo("home", {}, true /*no history*/);
-			console.log("previousHash???", sPreviousHash === undefined)
 			if (sPreviousHash === undefined) {
 				window.location.reload(true)
 			}

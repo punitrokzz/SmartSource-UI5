@@ -31,10 +31,6 @@
                     <ObjectNumber number="{Tamt}" unit="{Dctcurr}" />
                 </HBox>
             </VBox>
-            <VBox>
-                <Title text="Number of Participants" />
-                <!-- <Title text="Number of Participants" /> -->
-            </VBox>
         </uxap:headerContent>
         <uxap:sections>
             <uxap:ObjectPageSection title="General Information">

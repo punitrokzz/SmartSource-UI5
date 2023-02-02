@@ -1,16 +1,4 @@
-<mvc:View
-    controllerName="smartsourceapp.controller.item"
-    xmlns:mvc="sap.ui.core.mvc"
-    xmlns:uxap="sap.uxap"
-    xmlns="sap.m"
-    xmlns:l="sap.ui.layout"
-    xmlns:microchart="sap.suite.ui.microchart"
-    xmlns:chart="sap.chart"
-    xmlns:data="sap.chart.data"
-    xmlns:viz="sap.viz.ui5.controls"
-    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
-    xmlns:viz.data="sap.viz.ui5.data"
->
+<mvc:View controllerName="smartsourceapp.controller.item" xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:viz="sap.viz.ui5.controls" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:viz.data="sap.viz.ui5.data">
     <uxap:ObjectPageLayout showTitleInHeaderContent="false" showHeaderContent="true" showEditHeaderButton="false" showFooter="false" class="sapUiSizeCompact">
         <uxap:headerTitle>
             <uxap:ObjectPageHeader objectTitle="{path: 'Matname', formatter:'.formatter.textFormat' }" objectSubtitle="{Matnr}" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="true" isObjectSubtitleAlwaysVisible="true" showPlaceholder="false">
@@ -34,17 +22,25 @@
             </uxap:ObjectPageHeader>
         </uxap:headerTitle>
         <uxap:headerContent>
-            <!-- <VBox>
-                <ObjectAttribute title="Material Type" text="{ path: 'materialInfo>/Mtart', formatter:'.formatter.textFormat' }" />
-                <ObjectAttribute title="Material Group" text="{ path: 'materialInfo>/Matkl', formatter:'.formatter.textFormat' }" />
-            </VBox> -->
             <VBox>
-                <ObjectAttribute title="Material Type" text="{ path: 'Mtart', formatter:'.formatter.textFormat' }" />
-                <ObjectAttribute title="Material Group" text="{ path: 'Matkl', formatter:'.formatter.textFormat' }" />
+                <HBox class="sapUiTinyMarginTop">
+                    <Label text="Material Type:" class="sapUiTinyMarginEnd" vAlign="Middle" />
+                    <Text text="{ path: 'Mtart', formatter:'.formatter.textFormat' }" />
+                </HBox>
+                <HBox class="sapUiTinyMarginTop">
+                    <Label text="Material Group:" class="sapUiTinyMarginEnd" vAlign="Middle" />
+                    <Text text="{ path: 'Matkl', formatter:'.formatter.textFormat' }" />
+                </HBox>
             </VBox>
             <VBox>
-                <ObjectAttribute title="Purchase Order Unit of Measure" text="{ path: 'Bstme', formatter:'.formatter.textFormat' }" />
-                <ObjectAttribute title="Purchasing Group" text="{ path: 'Ekgrp', formatter:'.formatter.textFormat' }" />
+                <HBox class="sapUiTinyMarginTop">
+                    <Label text="Purchase Order Unit of Measur:" class="sapUiTinyMarginEnd" vAlign="Middle" />
+                    <Text text="{ path: 'Bstme', formatter:'.formatter.textFormat' }" />
+                </HBox>
+                <HBox class="sapUiTinyMarginTop">
+                    <Label text="Purchasing Group:" class="sapUiTinyMarginEnd" vAlign="Middle" />
+                    <Text text="{ path: 'Ekgrp', formatter:'.formatter.textFormat' }" />
+                </HBox>
             </VBox>
         </uxap:headerContent>
         <uxap:sections>
@@ -90,10 +86,8 @@
                                         <cells>
                                             <ObjectIdentifier title="{suppliers>Snr}" text="" />
                                             <Text text="{ path: 'suppliers>name1', formatter:'.formatter.textFormat' }" width="auto" />
-                                            <Text text="{suppliers>Ofp}" />
-                                            <Text text="{suppliers>Smp}" />
-                                            <!-- <ObjectIdentifier title="{Snr}" text="" /> -->
-                                            <!-- <Text text="{ path: 'Name1', formatter:'.formatter.textFormat' }" width="auto" /> -->
+                                            <ObjectNumber number="{suppliers>Ofp}" unit="{projectInfo>/Dctcurr}" />
+                                            <ObjectNumber number="{suppliers>Smp}" unit="{projectInfo>/Dctcurr}" />
                                         </cells>
                                     </ColumnListItem>
                                 </items>
@@ -106,9 +100,9 @@
                 <uxap:subSections>
                     <uxap:ObjectPageSubSection title="">
                         <uxap:blocks>
-                            <HBox width="100%" height="150px" visible="true" class="sapUiSizeCompact">
+                            <HBox width="100%" visible="true" class="sapUiSizeCompact">
                                 <items>
-                                    <viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}" vizType='line'>
+                                    <viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}" vizType='line' height='20rem'>
                                         <viz:dataset>
                                             <viz.data:FlattenedDataset data="{suppliers>/}">
                                                 <viz.data:dimensions>
