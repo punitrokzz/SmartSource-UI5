@@ -31,7 +31,6 @@ sap.ui.define([
 			var serviceURL = that.getServiceURL();
 			var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
 
-
 			oModel.read(`/SourcingProjectSet('${projectId}')`, {
 				success: (oData) => {
 					console.log("project", oData)

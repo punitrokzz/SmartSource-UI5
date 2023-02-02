@@ -48,5 +48,6 @@ sap.ui.define([
 			return news
 		}
 		
+		
 	}
 });

@@ -82,7 +82,7 @@
                                     <content>
                                         <ToolbarSpacer />
                                         <Label text="Filter Sentiment:" />
-                                        <Select forceSelection="false" selectedKey="{oNews>/SelectedSentiment}" change="onNewsFilter" width="200px">
+                                        <Select forceSelection="false" selectedKey="{oNews>/SelectedSentiment}" change="onNewsFilter" width="170px">
                                             <core:Item key="All" text="All" />
                                             <core:Item key="Positive" text="Positive" />
                                             <core:Item key="Negative" text="Negative" />
@@ -96,10 +96,9 @@
                                             <VBox class="sapUiSmallMargin">
                                                 <FlexBox alignItems="Start" justifyContent="SpaceBetween">
                                                     <Label text="{oNews>hostname}" design="Bold" />
-                                                    <!-- <Label text="05/01/2023" /> -->
                                                 </FlexBox>
                                                 <Title level="H6" titleStyle="H5">
-                                                    <Link text="{oNews>title}" target="_blank" href="{news>newsurl}" emphasized="true" wrapping="true" />
+                                                    <Link text="{oNews>title}" target="_blank" href="{oNews>newsurl}" emphasized="true" wrapping="true" />
                                                 </Title>
                                                 <Text text="{oNews>highlight}" width="auto" maxLines="6" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true" />
                                                 <HBox class="sapUiTinyMarginTop">
@@ -118,32 +117,16 @@
                     </uxap:ObjectPageSubSection>
                 </uxap:subSections>
             </uxap:ObjectPageSection>
-            <uxap:ObjectPageSection title="Sourcing Items">
+            <uxap:ObjectPageSection title="Items">
                 <uxap:subSections>
-                    <uxap:ObjectPageSubSection title="Sourcing Items">
+                    <uxap:ObjectPageSubSection title="Items">
                         <uxap:blocks>
-                            <HBox width="100%" height="150px" visible="true" class="sapUiSizeCompact">
-                                <items>
-                                    <microchart:InteractiveLineChart displayedPoints="135">
-                                        <microchart:points>
-                                            <microchart:InteractiveLineChartPoint color="Neutral" label="2017" value="{supplierInfo>/Ptrend/2017}" selected="false" />
-                                            <microchart:InteractiveLineChartPoint color="Neutral" label="2018" value="{supplierInfo>/Ptrend/2018}" selected="false" />
-                                            <microchart:InteractiveLineChartPoint color="Neutral" label="2019" value="{supplierInfo>/Ptrend/2019}" selected="false" />
-                                            <microchart:InteractiveLineChartPoint color="Neutral" label="2020" value="{supplierInfo>/Ptrend/2020}" selected="false" />
-                                            <microchart:InteractiveLineChartPoint color="Neutral" label="2021" value="{supplierInfo>/Ptrend/2021}" selected="false" />
-                                        </microchart:points>
-                                    </microchart:InteractiveLineChart>
-                                </items>
-                            </HBox>
                             <Table id="supplierTable" items="{items>/}" updateFinished="onTableUpdateFinished" width="100%" growing="true" growingScrollToLoad="true" growingThreshold="25">
                                 <headerToolbar>
                                     <OverflowToolbar design="Transparent">
                                         <content>
                                             <Title textAlign="Begin" text="Items" />
                                             <Title text="(1)" />
-                                            <!-- <ToolbarSpacer />
-                                            <Button text="Run Simulation" press="onSimulate" type="Emphasized" />
-                                            <Button icon="sap-icon://settings" press="_onButtonPress" /> -->
                                         </content>
                                     </OverflowToolbar>
                                 </headerToolbar>

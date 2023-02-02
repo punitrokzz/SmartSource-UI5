@@ -99,13 +99,11 @@ sap.ui.define([
 							// news.push(snews)
 
 
-							that.getView().setModel(oJson, 'news');
 							var oNews = new sap.ui.model.json.JSONModel({
 								"SelectedSentiment": "All",
 								"News": news,
 								"FilteredResults": news,
 							});
-							// that.getView().setModel(oJson, 'news');
 							that.getView().setModel(oNews, 'oNews');
 						},
 						error: (oError) => {

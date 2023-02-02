@@ -19,7 +19,6 @@ sap.ui.define([
 
 			oHistory = History.getInstance();
 			sPreviousHash = oHistory.getPreviousHash();
-			console.log("previousHash-------", sPreviousHash)
 			this.getRouter().navTo("home", {}, true /*no history*/);
 			console.log("previousHash???", sPreviousHash === undefined)
 			if (sPreviousHash === undefined) {
@@ -32,7 +31,6 @@ sap.ui.define([
 
 			oHistory = History.getInstance();
 			sPreviousHash = oHistory.getPreviousHash();
-			console.log("previousHash-------", sPreviousHash)
 			if (sPreviousHash !== undefined) {
 				window.history.go(-1);
 			} else {
@@ -50,7 +48,6 @@ sap.ui.define([
 			var oHeaderbar = oTable.getAggregation("headerToolbar");
 			if (oHeaderbar && oHeaderbar.getAggregation("content")[1]) {
 				var oTitle = oHeaderbar.getAggregation("content")[1];
-				console.log(oTable.getBinding("items"))
 				if (oTable.getBinding("items") && oTable.getBinding("items").isLengthFinal()) {
 					oTitle.setText("(" + oTable.getBinding("items").getLength() + ")");
 				} else {

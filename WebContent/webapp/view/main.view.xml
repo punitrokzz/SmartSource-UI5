@@ -11,50 +11,42 @@
             <IconTabBar id="idIconTabBarNoIcons" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
                 <items>
                     <IconTabFilter text="SUPPLIERS NEWS" key="news">
-                        <!-- <form:SimpleForm layout="ResponsiveGridLayout" editable="true" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" columnsS="3">
-                            <Label text="Choose an airline to filter" for="airlines" />
-                            <ComboBox id="airlines" items="{/SupplierDataSet}">
-                                <core:ListItem key="{Snr}" text="{Name1}" />
-                            </ComboBox>
-                            <Button type="Emphasized" text="Apply Filter" press="onFilter" />
-                            <Button type="Reject" text="Clear Filter" press="onClear" />
-                        </form:SimpleForm> -->
-                        <!-- <headerToolbar> -->
                         <Toolbar design="Transparent">
                             <content>
-                                <!-- <Title textAlign="Begin" text="Items" />
-                                    <Title text="(1)" /> -->
                                 <ToolbarSpacer />
-                                <Label text="Choose a supplier:" />
+                                <!-- <Label text="Choose a supplier:" />
                                 <ComboBox width="260px" showClearIcon="true" items="{/SupplierDataSet}" change="handleChange">
                                     <core:Item key="{Snr}" text="{Name1}" />
-                                </ComboBox>
-                                <!-- <ToolbarSpacer />
-                                            <Button text="Run Simulation" press="onSimulate" type="Emphasized" />
-                                            <Button icon="sap-icon://settings" press="_onButtonPress" /> -->
+                                </ComboBox> -->
+                                    <Label text="Filter Sentiment:" />
+                                    <Select forceSelection="false" selectedKey="{oNews>/SelectedSentiment}" change="onNewsFilter" width="170px">
+                                        <core:Item key="All" text="All" />
+                                        <core:Item key="Positive" text="Positive" />
+                                        <core:Item key="Negative" text="Negative" />
+                                        <core:Item key="Neutral" text="Neutral" />
+                                    </Select>
                             </content>
                         </Toolbar>
                         <!-- </headerToolbar> -->
-                        <List items="{news>/}">
+                        <List items="{oNews>/FilteredResults}">
                             <CustomListItem>
                                 <HBox alignItems="Center">
                                     <VBox class="sapUiSmallMargin">
                                         <FlexBox alignItems="Start" justifyContent="SpaceBetween">
-                                            <Label text="{news>hostname}" design="Bold" />
-                                            <!-- <Label text="05/01/2023" /> -->
+                                            <Label text="{oNews>hostname}" design="Bold" />
                                         </FlexBox>
                                         <Title level="H6" titleStyle="H5">
-                                            <Link text="{news>title}" target="_blank" href="{news>newsurl}" emphasized="true" wrapping="true" />
+                                            <Link text="{oNews>title}" target="_blank" href="{oNews>newsurl}" emphasized="true" wrapping="true" />
                                         </Title>
-                                        <Text text="{news>highlight}" width="auto" maxLines="6" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{oNews>highlight}" width="auto" maxLines="6" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true" />
                                         <HBox class="sapUiTinyMarginTop">
                                             <Label text="Related Supplier:" class="sapUiTinyMarginEnd" />
-                                            <tnt:InfoLabel text="{news>supplierName}" colorScheme="1" displayOnly="true" />
+                                            <tnt:InfoLabel text="{oNews>supplierName}" colorScheme="1" displayOnly="true" />
                                             <Label text="Sentiment:" wrapping="true" class="sapUiSmallMarginBegin sapUiTinyMarginEnd" />
-                                            <ObjectStatus visible="{=!${news>sentiment}}" text="Unknown" inverted="true" state="None" />
-                                            <ObjectStatus visible="{=${news>sentiment}==='Negative'}" text="Negative" inverted="true" state="Indication01" />
-                                            <ObjectStatus visible="{=${news>sentiment}==='Positive'}" text="Positive" inverted="true" state="Success" />
-                                            <ObjectStatus visible="{=${news>sentiment}==='Neutral'}" text="Neutral" inverted="true" state="Information" />
+                                            <ObjectStatus visible="{=!${oNews>sentiment}}" text="Unknown" inverted="true" state="None" />
+                                            <ObjectStatus visible="{=${oNews>sentiment}==='Negative'}" text="Negative" inverted="true" state="Indication01" />
+                                            <ObjectStatus visible="{=${oNews>sentiment}==='Positive'}" text="Positive" inverted="true" state="Success" />
+                                            <ObjectStatus visible="{=${oNews>sentiment}==='Neutral'}" text="Neutral" inverted="true" state="Information" />
                                         </HBox>
                                     </VBox>
                                 </HBox>

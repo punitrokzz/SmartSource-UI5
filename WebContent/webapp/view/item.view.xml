@@ -106,16 +106,6 @@
                 <uxap:subSections>
                     <uxap:ObjectPageSubSection title="">
                         <uxap:blocks>
-                        <!-- <HBox width="100%" height="150px" visible="true" class="sapUiSizeCompact">
-                                <items>
-                                    <microchart:InteractiveLineChart displayedPoints="50" points="{suppliers>/}" >
-                                        <microchart:points>
-                                            <microchart:InteractiveLineChartPoint color="Neutral" label="{suppliers>name1}" value="{suppliers>Ofp}" selected="false" />
-                                        </microchart:points>
-                                    </microchart:InteractiveLineChart>
-                                </items>
-                            </HBox> -->
-                           
                             <HBox width="100%" height="150px" visible="true" class="sapUiSizeCompact">
                                 <items>
                                     <viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}" vizType='line'>
@@ -141,57 +131,6 @@
                     </uxap:ObjectPageSubSection>
                 </uxap:subSections>
             </uxap:ObjectPageSection>
-            <!-- <uxap:ObjectPageSection title="Quotation History">
-                <uxap:subSections>
-                    <uxap:ObjectPageSubSection title="Quotation History">
-                        <uxap:blocks>
-                            <Table items="{/QuotationDataSet}" width="100%" growing="true" growingScrollToLoad="true" growingThreshold="25" mode="None">
-                                <headerToolbar>
-                                    <OverflowToolbar design="Transparent">
-                                        <content>
-                                            <Title textAlign="Begin" text="Quotation History" />
-                                            <ToolbarSpacer />
-                                            <Button text="Update Quotation" press="onPress" type="Emphasized" />
-                                        </content>
-                                    </OverflowToolbar>
-                                </headerToolbar>
-                                <columns>
-                                    <Column width="auto" minScreenWidth="Tablet" demandPopin="true">
-                                        <header>
-                                            <Text text="Id" width="auto" />
-                                        </header>
-                                    </Column>
-                                    <Column width="auto" minScreenWidth="Tablet" demandPopin="true">
-                                        <header>
-                                            <Text text="Round Number" width="auto" />
-                                        </header>
-                                    </Column>
-                                    <Column width="auto" minScreenWidth="Phone">
-                                        <header>
-                                            <Text text="Offered Price" width="auto" />
-                                        </header>
-                                    </Column>
-                                    <Column width="auto" minScreenWidth="Phone">
-                                        <header>
-                                            <Text text="Optimal Price" width="auto" />
-                                        </header>
-                                    </Column>
-                                </columns>
-                                <items>
-                                    <ColumnListItem>
-                                        <cells>
-                                            <Text text="{Qaid}" />
-                                            <Text text="{Rnr}" />
-                                            <Text text="{Ofp}" />
-                                            <Text text="{Smp}" />
-                                        </cells>
-                                    </ColumnListItem>
-                                </items>
-                            </Table>
-                        </uxap:blocks>
-                    </uxap:ObjectPageSubSection>
-                </uxap:subSections>
-            </uxap:ObjectPageSection> -->
         </uxap:sections>
     </uxap:ObjectPageLayout>
 </mvc:View>
