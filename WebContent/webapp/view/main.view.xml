@@ -14,20 +14,15 @@
                         <Toolbar design="Transparent">
                             <content>
                                 <ToolbarSpacer />
-                                <!-- <Label text="Choose a supplier:" />
-                                <ComboBox width="260px" showClearIcon="true" items="{/SupplierDataSet}" change="handleChange">
-                                    <core:Item key="{Snr}" text="{Name1}" />
-                                </ComboBox> -->
-                                    <Label text="Filter Sentiment:" />
-                                    <Select forceSelection="false" selectedKey="{oNews>/SelectedSentiment}" change="onNewsFilter" width="170px">
-                                        <core:Item key="All" text="All" />
-                                        <core:Item key="Positive" text="Positive" />
-                                        <core:Item key="Negative" text="Negative" />
-                                        <core:Item key="Neutral" text="Neutral" />
-                                    </Select>
+                                <Label text="Filter Sentiment:" />
+                                <Select forceSelection="false" selectedKey="{oNews>/SelectedSentiment}" change="onNewsFilter" width="170px">
+                                    <core:Item key="All" text="All" />
+                                    <core:Item key="Positive" text="Positive" />
+                                    <core:Item key="Negative" text="Negative" />
+                                    <core:Item key="Neutral" text="Neutral" />
+                                </Select>
                             </content>
                         </Toolbar>
-                        <!-- </headerToolbar> -->
                         <List items="{oNews>/FilteredResults}">
                             <CustomListItem>
                                 <HBox alignItems="Center">

@@ -26,33 +26,10 @@ sap.ui.define([
 			var projectId = oEvent.getParameter("arguments").projectId;
 			var oView = this.getView();
 			var sPath = `/SourcingProjectSet('${projectId}')`
-			// var sPath = `/SourcingProjectSet('${projectId}')?$expand=SourceToSps`
-			// oView.bindElement(sPath);
+
 			oView.bindElement({
 				path: sPath,
 				parameters: { '$expand': 'SourceToMaterial,SourceToSps' }
-			});
-
-			var serviceURL = this.getServiceURL();
-			var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
-			oModel.read(sPath, {
-				urlParameters: { '$expand': 'SourceToSps,SourceToMaterial' },
-				success: (oData) => {
-					console.log(oData)
-					console.log(oData.SourceToSps)
-					console.log(oData.SourceToMaterial)
-				},
-				error: (oError) => {
-					console.log(oError);
-				},
-			});
-			oModel.read(`/MaterialDataSet`, {
-				success: (oData) => {
-					console.log(oData)
-				},
-				error: (oError) => {
-					console.log(oError);
-				},
 			});
 		},
 

@@ -43,35 +43,6 @@
                         <uxap:blocks>
                             <l:VerticalLayout width="100%" class="gridWrapper">
                                 <l:Grid containerQuery="true" defaultSpan="XL3 L3">
-                                    <!-- <VBox>
-                                        <Title text="Basic Data" />
-                                        <Label text="Material Group:" vAlign="Middle" />
-                                        <Text text="{Matkl}" />
-                                        <Label text="Published On:" vAlign="Middle" />
-                                        <Text text="{Pbdt}" />
-                                        <Label text="Document Currency:" vAlign="Middle" />
-                                        <Text text="{Dctcurr}" />
-                                    </VBox>
-                                    <VBox>
-                                        <Title text="Supplier Quotation Settings" />
-                                        <Label text="Allowed Currencies:" vAlign="Middle" />
-                                        <Text text="{Allcurr}" />
-                                    </VBox>
-                                    <VBox>
-                                        <Title text="Organization" />
-                                        <Label text="Central Purchasing Group:" vAlign="Middle" />
-                                        <Text text="{Ekgrp}" />
-                                        <Label text="Central Company Organization:" vAlign="Middle" />
-                                        <Text text="{Ekorg}" />
-                                        <Label text="Central Company Code:" vAlign="Middle" />
-                                        <Text text="{Bukrs}" />
-                                    </VBox>
-                                    <VBox>
-                                        <Title text="Contact Details" />
-                                        <Label text="Purchaser Responsible:" vAlign="Middle" />
-                                        <Text text="{Prr}" />
-                                    </VBox> -->
-
                                     <VBox>
                                         <Title text="Basic Data" />
                                         <HBox class="sapUiTinyMarginTop">
