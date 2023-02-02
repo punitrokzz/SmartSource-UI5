@@ -3,11 +3,11 @@
   "conn_usestrictssl": false,
   "conn_server": "http://z01lp1.ucc.in.tum.de:8000/",
   "conn_client": "300",
-  "conn_user": "DEV-001",
-  "conn_password": "123456edc",
-  "abap_package": "Z_WS22_T1",
-  "abap_bsp": "Z_SMART_SOURCE",
+  "conn_user": "DEV-005",
+  "conn_password": "Helloworld123",
+  "abap_package": "Z_00_005_TEST_APP",
+  "abap_bsp": "ZY_WS22_T1_APP",
   "abap_bsp_text": "ZY_WS22_T1 Application Smart Source",
-  "abap_transport": "Z01K900023",
+  "abap_transport": "Z01K900032",
   "calcappindex": true
 }
