@@ -1,7 +1,7 @@
 <mvc:View controllerName="smartsourceapp.controller.supplier" xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:microchart="sap.suite.ui.microchart" xmlns:core="sap.ui.core">
     <uxap:ObjectPageLayout showTitleInHeaderContent="false" showHeaderContent="true" showEditHeaderButton="false" showFooter="false" useIconTabBar="true" class="sapUiSizeCompact">
         <uxap:headerTitle>
-            <uxap:ObjectPageHeader objectTitle="{ path: 'Name1', formatter:'.formatter.textFormat' }" objectSubtitle="{Snr}" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="true" isObjectSubtitleAlwaysVisible="true" showPlaceholder="false">
+            <uxap:ObjectPageHeader objectTitle="{ path: 'Name1' }" objectSubtitle="{Snr}" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="true" isObjectSubtitleAlwaysVisible="true" showPlaceholder="false">
                 <uxap:navigationBar>
                     <Bar>
                         <contentLeft>

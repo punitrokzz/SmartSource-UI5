@@ -142,7 +142,7 @@
                                 <headerToolbar>
                                     <OverflowToolbar design="Transparent">
                                         <content>
-                                            <Title textAlign="Begin" text="Supplier List" />
+                                            <Title textAlign="Begin" text="Suppliers" />
                                             <Title text="(1)" />
                                         </content>
                                     </OverflowToolbar>
