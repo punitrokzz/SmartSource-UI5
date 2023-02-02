@@ -29,8 +29,6 @@ sap.ui.define([
 			var oView = this.getView();
 			oView.bindElement(`/SupplierDataSet('${supplierId}')`);
 
-			this.getData(supplierId);
-
 			var that = this;
 			var serviceURL = that.getServiceURL();
 			var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
@@ -58,51 +56,39 @@ sap.ui.define([
 					console.log(oError);
 				},
 			});
-			
-		},
 
-		getData(supplierId) {
-			var that = this;
-			if (supplierId) {
-				var oSettingsModel = new sap.ui.model.json.JSONModel();
-				oSettingsModel.loadData("model/applicationProperties.json");
-				oSettingsModel.attachRequestCompleted(function () {
-					that.getView().setModel(this, "Settings");
-					var serviceURL = that.getServiceURL();
-					var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
+			oModel.read(`/SupplierInfoDataSet('${supplierId}')`, {
+				success: (oData) => {
+					const pTrend = oData['Ptrend'].split("*");
+					oData['Ptrend'] = {
+						2021: parseFloat(pTrend[0]),
+						2020: parseFloat(pTrend[1]),
+						2019: parseFloat(pTrend[2]),
+						2018: parseFloat(pTrend[3]),
+						2017: parseFloat(pTrend[4]),
+					}
+					var oJson = new sap.ui.model.json.JSONModel(oData);
 
-					oModel.read(`/SupplierInfoDataSet('${supplierId}')`, {
-						success: (oData) => {
-							const pTrend = oData['Ptrend'].split("*");
-							oData['Ptrend'] = {
-								2021: parseFloat(pTrend[0]),
-								2020: parseFloat(pTrend[1]),
-								2019: parseFloat(pTrend[2]),
-								2018: parseFloat(pTrend[3]),
-								2017: parseFloat(pTrend[4]),
-							}
-							var oJson = new sap.ui.model.json.JSONModel(oData);
+					that.getView().setModel(oJson, 'supplierInfo');
 
-							that.getView().setModel(oJson, 'supplierInfo');
+					let news = News.getSupplierNews(oData);
 
-							let news = News.getSupplierNews(oData);
-
-							var oNews = new sap.ui.model.json.JSONModel({
-								"SelectedSentiment": "All",
-								"News": news,
-								"FilteredResults": news,
-							});
-							that.getView().setModel(oNews, 'oNews');
-						},
-						error: (oError) => {
-							console.log(oError);
-							var oJson = new sap.ui.model.json.JSONModel({});
-							that.getView().setModel(oJson, 'supplierInfo');
-						},
+					var oNews = new sap.ui.model.json.JSONModel({
+						"SelectedSentiment": "All",
+						"News": news,
+						"FilteredResults": news,
 					});
-				});
-			}
+					that.getView().setModel(oNews, 'oNews');
+				},
+				error: (oError) => {
+					console.log(oError);
+					var oJson = new sap.ui.model.json.JSONModel({});
+					that.getView().setModel(oJson, 'supplierInfo');
+				},
+			});
+
 		},
+
 		onNavigateProject: function () {
 			var projectId = this.getView().getModel('projectInfo').getProperty('/Spid')
 			this.getRouter().navTo("projectDetail", { projectId });
