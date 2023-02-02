@@ -1,4 +1,13 @@
-<mvc:View controllerName="smartsourceapp.controller.supplier" xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:microchart="sap.suite.ui.microchart" xmlns:chart="sap.chart" xmlns:data="sap.chart.data" xmlns:core="sap.ui.core">
+<mvc:View 
+controllerName="smartsourceapp.controller.supplier" 
+xmlns:mvc="sap.ui.core.mvc" 
+xmlns:uxap="sap.uxap" 
+xmlns="sap.m" 
+xmlns:l="sap.ui.layout" 
+xmlns:microchart="sap.suite.ui.microchart" 
+xmlns:chart="sap.chart" 
+xmlns:data="sap.chart.data" 
+xmlns:core="sap.ui.core">
     <uxap:ObjectPageLayout showTitleInHeaderContent="false" showHeaderContent="true" showEditHeaderButton="false" showFooter="false" useIconTabBar="true" class="sapUiSizeCompact">
         <uxap:headerTitle>
             <uxap:ObjectPageHeader objectTitle="{ path: 'Name1', formatter:'.formatter.textFormat' }" objectSubtitle="{Snr}" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="true" isObjectSubtitleAlwaysVisible="true" showPlaceholder="false">
@@ -82,7 +91,7 @@
                                     <content>
                                         <ToolbarSpacer />
                                         <Label text="Filter Sentiment:" />
-                                        <Select forceSelection="false" selectedKey="{oNews>/SelectedSentiment}" change="onNewsFilter">
+                                        <Select forceSelection="false" selectedKey="{oNews>/SelectedSentiment}" change="onNewsFilter" width="200px" >
                                             <core:Item key="All" text="All" />
                                             <core:Item key="Positive" text="Positive" />
                                             <core:Item key="Negative" text="Negative" />
@@ -93,8 +102,6 @@
                                 <List items="{oNews>/FilteredResults}">
                                     <CustomListItem>
                                         <HBox alignItems="Center">
-                                            <!-- <Image src="https://toyota-cms-media.s3.amazonaws.com/wp-content/uploads/2022/11/Toyota-bZ-Compact-SUV-Concept_002-1-1500x844.jpg" width="15em" /> -->
-
                                             <VBox class="sapUiSmallMargin">
                                                 <FlexBox alignItems="Start" justifyContent="SpaceBetween">
                                                     <Label text="{oNews>hostname}" design="Bold" />
@@ -139,17 +146,22 @@
                                 <columns>
                                     <Column width="auto" minScreenWidth="Tablet" demandPopin="true">
                                         <header>
-                                            <Text text="Supplier" width="auto" />
+                                            <Text text="Material Number" width="auto" />
                                         </header>
                                     </Column>
-                                    <!-- <Column width="auto" minScreenWidth="Phone">
-                                        <header>
-                                            <Text text="Name" width="auto" />
-                                        </header>
-                                    </Column> -->
                                     <Column width="auto" minScreenWidth="Phone">
                                         <header>
-                                            <Text text="Estimated Optimal Price" width="auto" />
+                                            <Text text="Material Name" width="auto" />
+                                        </header>
+                                    </Column>
+                                    <Column width="auto" minScreenWidth="Phone">
+                                        <header>
+                                            <Text text="Offered Price" width="auto" />
+                                        </header>
+                                    </Column>
+                                    <Column width="auto" minScreenWidth="Phone">
+                                        <header>
+                                            <Text text="Optimal Price" width="auto" />
                                         </header>
                                     </Column>
                                 </columns>
@@ -157,8 +169,9 @@
                                     <ColumnListItem type="Active" press="onNavigateItem(${items>Matnr})">
                                         <cells>
                                             <ObjectIdentifier title="{items>Matnr}" text="" />
-                                            <!-- <Text text="{ path: 'supp>Name1', formatter:'.formatter.textFormat' }" width="auto" /> -->
-                                            <Text text="" width="auto" />
+                                            <Text text="{ path: 'items>Name1', formatter:'.formatter.textFormat' }" width="auto" />
+                                            <Text text="{items>Ofp}" />
+                                            <Text text="{items>Smp}" />
                                         </cells>
                                     </ColumnListItem>
                                 </items>

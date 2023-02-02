@@ -30,15 +30,17 @@
                 <ObjectAttribute title="Material Type" text="{ path: 'Mtart', formatter:'.formatter.textFormat' }" />
                 <ObjectAttribute title="Material Group" text="{ path: 'Matkl', formatter:'.formatter.textFormat' }" />
             </VBox>
-            
+            <VBox>
+                <ObjectAttribute title="Purchase Order Unit of Measure" text="{ path: 'Bstme', formatter:'.formatter.textFormat' }" />
+                <ObjectAttribute title="Purchasing Group" text="{ path: 'Ekgrp', formatter:'.formatter.textFormat' }" />
+            </VBox>
         </uxap:headerContent>
-
         <uxap:sections>
             <uxap:ObjectPageSection title="Supplier List">
                 <uxap:subSections>
                     <uxap:ObjectPageSubSection title="Supplier List">
                         <uxap:blocks>
-                            <Table id="supplierTable" items="{supp>/}" updateFinished="onTableUpdateFinished" width="100%" growing="true" growingScrollToLoad="true" growingThreshold="25">
+                            <Table items="{suppliers>/}" updateFinished="onTableUpdateFinished" width="100%" growing="true" growingScrollToLoad="true" growingThreshold="25" mode="None">
                                 <headerToolbar>
                                     <OverflowToolbar design="Transparent">
                                         <content>
@@ -46,7 +48,6 @@
                                             <Title text="(1)" />
                                             <ToolbarSpacer />
                                             <Button text="Run Simulation" press="onSimulate" type="Emphasized" />
-                                            <Button icon="sap-icon://settings" press="_onButtonPress" />
                                         </content>
                                     </OverflowToolbar>
                                 </headerToolbar>
@@ -63,16 +64,24 @@
                                     </Column>
                                     <Column width="auto" minScreenWidth="Phone">
                                         <header>
-                                            <Text text="Estimated Optimal Price" width="auto" />
+                                            <Text text="Offered Price" width="auto" />
+                                        </header>
+                                    </Column>
+                                    <Column width="auto" minScreenWidth="Phone">
+                                        <header>
+                                            <Text text="Optimal Price" width="auto" />
                                         </header>
                                     </Column>
                                 </columns>
                                 <items>
-                                    <ColumnListItem type="Active" press="onNavigateSupplier(${supp>Snr})">
+                                    <ColumnListItem type="Active" press="onNavigateSupplier(${suppliers>Snr})">
                                         <cells>
-                                            <ObjectIdentifier title="{supp>Snr}" text="" />
-                                            <Text text="{ path: 'supp>Name1', formatter:'.formatter.textFormat' }" width="auto" />
-                                            <Text text="" width="auto" />
+                                            <ObjectIdentifier title="{suppliers>Snr}" text="" />
+                                            <Text text="{ path: 'suppliers>name1', formatter:'.formatter.textFormat' }" width="auto" />
+                                            <Text text="{suppliers>Ofp}" />
+                                            <Text text="{suppliers>Smp}" />
+                                            <!-- <ObjectIdentifier title="{Snr}" text="" /> -->
+                                            <!-- <Text text="{ path: 'Name1', formatter:'.formatter.textFormat' }" width="auto" /> -->
                                         </cells>
                                     </ColumnListItem>
                                 </items>
@@ -81,7 +90,15 @@
                     </uxap:ObjectPageSubSection>
                 </uxap:subSections>
             </uxap:ObjectPageSection>
-            <uxap:ObjectPageSection title="Quotation History">
+            <uxap:ObjectPageSection title="">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection title="">
+                        <uxap:blocks>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <!-- <uxap:ObjectPageSection title="Quotation History">
                 <uxap:subSections>
                     <uxap:ObjectPageSubSection title="Quotation History">
                         <uxap:blocks>
@@ -91,7 +108,6 @@
                                         <content>
                                             <Title textAlign="Begin" text="Quotation History" />
                                             <ToolbarSpacer />
-                                            <!-- <Button text="Test" press="onPress" /> -->
                                             <Button text="Update Quotation" press="onPress" type="Emphasized" />
                                         </content>
                                     </OverflowToolbar>
@@ -125,8 +141,6 @@
                                             <Text text="{Rnr}" />
                                             <Text text="{Ofp}" />
                                             <Text text="{Smp}" />
-                                            <!-- <ObjectIdentifier title="{Snr}" text="" /> -->
-                                            <!-- <Text text="{ path: 'Name1', formatter:'.formatter.textFormat' }" width="auto" /> -->
                                         </cells>
                                     </ColumnListItem>
                                 </items>
@@ -134,7 +148,7 @@
                         </uxap:blocks>
                     </uxap:ObjectPageSubSection>
                 </uxap:subSections>
-            </uxap:ObjectPageSection>
+            </uxap:ObjectPageSection> -->
         </uxap:sections>
     </uxap:ObjectPageLayout>
 </mvc:View>

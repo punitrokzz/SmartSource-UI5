@@ -38,8 +38,6 @@
                         <List items="{news>/}">
                             <CustomListItem>
                                 <HBox alignItems="Center">
-                                    <!-- <Image src="https://toyota-cms-media.s3.amazonaws.com/wp-content/uploads/2022/11/Toyota-bZ-Compact-SUV-Concept_002-1-1500x844.jpg" width="15em" /> -->
-
                                     <VBox class="sapUiSmallMargin">
                                         <FlexBox alignItems="Start" justifyContent="SpaceBetween">
                                             <Label text="{news>hostname}" design="Bold" />

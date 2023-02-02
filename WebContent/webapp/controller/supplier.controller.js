@@ -1,8 +1,7 @@
 sap.ui.define([
 	"smartsourceapp/controller/BaseController",
-	"./simulationDialog",
 	"./news",
-], function (Controller, Dialog, News) {
+], function (Controller, News) {
 	"use strict";
 
 	return Controller.extend("smartsourceapp.controller.main", {
@@ -32,47 +31,9 @@ sap.ui.define([
 
 			this.getData(supplierId);
 
-			// var testURL = this
-			// 	.getView()
-			// 	.getModel("Settings")
-			// 	.getProperty("/oTestUrl");
-			// console.log("testURL", testURL)
-			// var oTestModel = new sap.ui.model.odata.v2.ODataModel(testURL);
-			// this.getView().setModel(oTestModel);
-
-			// var that = this;
-
-			// oTestModel.read(`/ProjectSet('${projectId}')`, {
-			// 	success: (oData) => {
-			// 		console.log(oData)
-			// 		var oJson = new sap.ui.model.json.JSONModel(oData);
-			// 		// var oJson = new sap.ui.model.json.JSONModel({});
-			// 		that.getView().setModel(oJson, 'projectInfo');
-			// 	},
-			// 	error: (oError) => {
-			// 		console.log(oError);
-			// 	},
-			// });
-
-
 			var that = this;
 			var serviceURL = that.getServiceURL();
 			var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
-
-			oModel.read(`/SourcingProjectSet('${projectId}')`, {
-				urlParameters: { '$expand': 'SourceToMaterial' },
-				success: (oData) => {
-					// console.log(oData)
-					console.log(oData.SourceToSps)
-					console.log(oData.SourceToSps.results)
-					// console.log(oData.SourceToMaterial)
-					var oJson = new sap.ui.model.json.JSONModel(oData.SourceToMaterial.results);
-					that.getView().setModel(oJson, 'items');
-				},
-				error: (oError) => {
-					console.log(oError);
-				},
-			});
 
 			oModel.read(`/SourcingProjectSet('${projectId}')`, {
 				success: (oData) => {
@@ -80,6 +41,23 @@ sap.ui.define([
 					var oJson = new sap.ui.model.json.JSONModel(oData);
 					// var oJson = new sap.ui.model.json.JSONModel({});
 					that.getView().setModel(oJson, 'projectInfo');
+				},
+				error: (oError) => {
+					console.log(oError);
+				},
+			});
+
+			oModel.read("/FilterSupplier", {
+				urlParameters: {
+					"Spid": `'${projectId}'`,
+					"Snr": `'${supplierId}'`,
+				},
+				success: (oData) => {
+					console.log(oData)
+
+					var oJson = new sap.ui.model.json.JSONModel(oData.results);
+					// var oJson = new sap.ui.model.json.JSONModel({});
+					that.getView().setModel(oJson, 'items');
 				},
 				error: (oError) => {
 					console.log(oError);
@@ -119,9 +97,6 @@ sap.ui.define([
 							// snews.supplier = oData.Name1
 							// snews.highlight = snews.highlight.replace(/<\/?b>/g, "");
 							// news.push(snews)
-							that.news = news
-							var oJson = new sap.ui.model.json.JSONModel(news);
-							// var oJson = new sap.ui.model.json.JSONModel({});
 
 
 							that.getView().setModel(oJson, 'news');

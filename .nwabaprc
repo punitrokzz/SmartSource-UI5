@@ -7,7 +7,7 @@
   "conn_password": "123456edc",
   "abap_package": "Z_WS22_T1",
   "abap_bsp": "Z_SMART_SOURCE",
-  "abap_bsp_text": "Smart Source UI5 Application",
+  "abap_bsp_text": "ZY_WS22_T1 Application Smart Source",
   "abap_transport": "Z01K900023",
   "calcappindex": true
 }
